@@ -1,0 +1,4 @@
+enum IncomeCategories {
+  SALARY,
+  GIFT
+}
