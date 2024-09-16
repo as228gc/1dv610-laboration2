@@ -1,0 +1,13 @@
+[
+  {
+    "date": "2024-09-25",
+    "category": "income",
+    "amount": 25000
+  },
+  {
+    "date": "2024-09-26",
+    "category": "expense",
+    "type": "food",
+    "amount": 500
+  }
+]
