@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lnu/eslint-config": "^1.1.10",
     "jest": "^29.7.0"
   }
 }
