@@ -24,4 +24,15 @@ describe('Transaction class tests', () => {
       )
     }).toThrow()
   })
+
+  it('throws an error if a transaction is created with invalid income category', () => {
+    expect(() => {
+      const transaction = new Transaction(
+        new Date(),
+        100,
+        TransactionTypes.INCOME,
+        ExpenseCategories.FOOD
+      )
+    }).toThrow()
+  })
 })
