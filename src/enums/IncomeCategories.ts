@@ -1,4 +1,4 @@
-enum IncomeCategories {
+export enum IncomeCategories {
   SALARY,
   GIFT
 }

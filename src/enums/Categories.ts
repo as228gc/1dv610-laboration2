@@ -1,4 +1,4 @@
-enum Categories {
+export enum Categories {
   FOOD,
   TRANSPORT,
   HOUSEHOLD,
