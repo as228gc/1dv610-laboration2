@@ -46,10 +46,13 @@ export class Transaction {
    * @throws {Error} - If the category is not of the right transaction type.
    */
   private validateCategory (category: string, type: TransactionTypes) {
+    // If the transaction type is expense, and the transactions category is not in the expenses category.
     if (type === TransactionTypes.EXPENSE 
     && !(Object.values(ExpenseCategories).includes(category as ExpenseCategories))) {
       throw new Error('The entered category is not a valid expense category.')
-    } else if (
+    }
+    // If the transaction type is income, but the category is not in the income category.
+    else if (
       type === TransactionTypes.INCOME
       && !(Object.values(IncomeCategories).includes(category as IncomeCategories))){
         throw new Error('The entered category is not a valid income category.')
