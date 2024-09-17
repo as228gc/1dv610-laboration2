@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:detail": "npx jest --verbose",
+    "build": "npx tsc",
     "start": "node ./dist/index.js"
   },
   "keywords": [],
