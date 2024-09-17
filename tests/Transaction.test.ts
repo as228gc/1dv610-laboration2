@@ -35,4 +35,15 @@ describe('Transaction class tests', () => {
       )
     }).toThrow()
   })
+
+  it('throws an error if a transaction entered with a negative amount.', () => {
+    expect(() => {
+      const transaction = new Transaction(
+        new Date(),
+        -100,
+        TransactionTypes.EXPENSE,
+        ExpenseCategories.FOOD
+      )
+    }).toThrow()
+  })
 })
