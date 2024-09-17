@@ -7,7 +7,6 @@ import { TransactionTypes } from "../../enums/TransactionTypes"
 
 /**
  * Represents a transaction.
- * 
  */
 export class Transaction {
   #date: Date
@@ -17,7 +16,7 @@ export class Transaction {
 
   /**
    * 
-   * @param date
+   * @param date - The date the transaction is created.
    * @param {number} amount - The amount of money.
    * @param {TransactionTypes} type - Income or Expense. 
    * @param {ExpenseCategories | IncomeCategories} category - Either a expense-, or income category.
@@ -27,7 +26,8 @@ export class Transaction {
     date: Date,
     amount: number,
     type: TransactionTypes,
-    category: ExpenseCategories | IncomeCategories ) {
+    category: ExpenseCategories | IncomeCategories 
+  ) {
 
     this.#date = date
     this.#amount = amount
