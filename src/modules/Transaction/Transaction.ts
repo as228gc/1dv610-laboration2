@@ -1,9 +1,9 @@
 /**
  * @author Alex Söderberg <as228gc@student.lnu.se>
  */
-import { ExpenseCategories } from "../../enums/ExpenseCategories"
-import { IncomeCategories } from "../../enums/IncomeCategories"
-import { TransactionTypes } from "../../enums/TransactionTypes"
+import { ExpenseCategory } from "../../enums/ExpenseCategory"
+import { IncomeCategory } from "../../enums/IncomeCategory"
+import { TransactionType } from "../../enums/TransactionType"
 
 /**
  * Represents a transaction.
@@ -11,22 +11,22 @@ import { TransactionTypes } from "../../enums/TransactionTypes"
 export class Transaction {
   #date: Date
   #amount: number
-  #category: ExpenseCategories | IncomeCategories
-  #type: TransactionTypes
+  #category: ExpenseCategory | IncomeCategory
+  #type: TransactionType
 
   /**
    * 
    * @param date - The date the transaction is created.
    * @param {number} amount - The amount of money.
-   * @param {TransactionTypes} type - Income or Expense. 
-   * @param {ExpenseCategories | IncomeCategories} category - Either a expense-, or income category.
+   * @param {TransactionType} type - Income or Expense. 
+   * @param {ExpenseCategory | IncomeCategory} category - Either a expense-, or income category.
    * @throws {error}
    */
   constructor (
     date: Date,
     amount: number,
-    type: TransactionTypes,
-    category: ExpenseCategories | IncomeCategories 
+    type: TransactionType,
+    category: ExpenseCategory | IncomeCategory 
   ) {
 
     // Check if the category is valid, with the given transaction type.
@@ -43,28 +43,28 @@ export class Transaction {
   /**
    * Check if the category is valid with the given transaction type.
    * 
-   * @param {string} category - The category of income or expense.
-   * @param {TransactionTypes} type - The type of transaction.
-   * @throws {Error} - If the category is not of the right transaction type.
+   * @param { string } category - The category of income or expense.
+   * @param { TransactionType } type - The type of transaction.
+   * @throws { Error } - If the category is not of the right transaction type.
    */
-  private validateCategory (category: string, type: TransactionTypes) {
+  private validateCategory (category: string, type: TransactionType) {
     // If the transaction type is expense, and the transactions category is not in the expenses category.
-    if (type === TransactionTypes.EXPENSE 
-    && !(Object.values(ExpenseCategories).includes(category as ExpenseCategories))) {
+    if (type === TransactionType.EXPENSE 
+    && !(Object.values(ExpenseCategory).includes(category as ExpenseCategory))) {
       throw new Error('The entered category is not a valid expense category.')
     }
     // If the transaction type is income, but the category is not in the income category.
     else if (
-      type === TransactionTypes.INCOME
-      && !(Object.values(IncomeCategories).includes(category as IncomeCategories))){
+      type === TransactionType.INCOME
+      && !(Object.values(IncomeCategory).includes(category as IncomeCategory))){
         throw new Error('The entered category is not a valid income category.')
     }
   }
 
   /**
    * Validates the amount.
-   * @param {number} amount - The amount of money the transaction handles.
-   * @throws {Error} - The amount can not be less than 0.
+   * @param { number } amount - The amount of money the transaction handles.
+   * @throws { Error } - The amount can not be less than 0.
    */
   private validateAmount (amount: number) {
     if (amount < 0 ) {
@@ -76,7 +76,7 @@ export class Transaction {
   
   /**
    * Returns the date of the transaction.
-   * @returns {Date} - The date of the transaction.
+   * @returns { Date } - The date of the transaction.
    */
   public getDate(): Date {
     return this.#date
@@ -84,7 +84,7 @@ export class Transaction {
 
   /**
    * Returns the amount of money the transaction handles.
-   * @returns {number} - The amount of money the transaction handles.
+   * @returns { number } - The amount of money the transaction handles.
    */
   public getAmount(): number {
     return this.#amount
@@ -92,17 +92,17 @@ export class Transaction {
 
   /**
    * Returns the category of the transaction.
-   * @returns {ExpenseCategories | IncomeCategories } - The category of the transaction.
+   * @returns { ExpenseCategory | IncomeCategory } - The category of the transaction.
    */
-  public getCategory(): ExpenseCategories | IncomeCategories {
+  public getCategory(): ExpenseCategory | IncomeCategory {
     return this.#category
   }
 
   /**
    * Returns the type of the transaction.
-   * @returns {TransactionTypes} - The type of transaction.
+   * @returns { TransactionType } - The type of transaction.
    */
-  public getType(): TransactionTypes {
+  public getType(): TransactionType {
     return this.#type
   }
 }

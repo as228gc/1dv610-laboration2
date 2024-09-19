@@ -1,15 +1,15 @@
 import { Transaction } from "../src/modules/Transaction/Transaction";
-import { TransactionTypes } from "../src/enums/TransactionTypes";
-import { ExpenseCategories } from "../src/enums/ExpenseCategories";
-import { IncomeCategories } from "../src/enums/IncomeCategories";
+import { TransactionType } from "../src/enums/TransactionType";
+import { ExpenseCategory } from "../src/enums/ExpenseCategory";
+import { IncomeCategory } from "../src/enums/IncomeCategory";
 
 describe('Transaction class tests', () => {
   it('should create a transaction instance with a valid expense category', () => {
     const transaction = new Transaction(
       new Date(),
       100,
-      TransactionTypes.EXPENSE,
-      ExpenseCategories.FOOD
+      TransactionType.EXPENSE,
+      ExpenseCategory.FOOD
     )
     expect(transaction).toBeDefined()
   })
@@ -18,8 +18,8 @@ describe('Transaction class tests', () => {
     const transaction = new Transaction(
       new Date(),
       100,
-      TransactionTypes.INCOME,
-      IncomeCategories.SALARY
+      TransactionType.INCOME,
+      IncomeCategory.SALARY
     )
     expect(transaction).toBeDefined()
   })
@@ -29,8 +29,8 @@ describe('Transaction class tests', () => {
       const transaction = new Transaction(
         new Date(),
         100,
-        TransactionTypes.EXPENSE,
-        IncomeCategories.SALARY
+        TransactionType.EXPENSE,
+        IncomeCategory.SALARY
       )
     }).toThrow()
   })
@@ -40,8 +40,8 @@ describe('Transaction class tests', () => {
       const transaction = new Transaction(
         new Date(),
         100,
-        TransactionTypes.INCOME,
-        ExpenseCategories.FOOD
+        TransactionType.INCOME,
+        ExpenseCategory.FOOD
       )
     }).toThrow()
   })
@@ -51,8 +51,8 @@ describe('Transaction class tests', () => {
       const transaction = new Transaction(
         new Date(),
         -100,
-        TransactionTypes.EXPENSE,
-        ExpenseCategories.FOOD
+        TransactionType.EXPENSE,
+        ExpenseCategory.FOOD
       )
     }).toThrow()
   })
@@ -61,8 +61,8 @@ describe('Transaction class tests', () => {
   const validExpenseTransaction = new Transaction(
     new Date(),
     100,
-    TransactionTypes.EXPENSE,
-    ExpenseCategories.FOOD
+    TransactionType.EXPENSE,
+    ExpenseCategory.FOOD
   )
 
   it('returns the date of the transaction', () => {
@@ -74,10 +74,10 @@ describe('Transaction class tests', () => {
   })
 
   it('returns the category of the transaction', () => {
-    expect(validExpenseTransaction.getCategory()).toEqual('food' as ExpenseCategories)
+    expect(validExpenseTransaction.getCategory()).toEqual('food' as ExpenseCategory)
   })
 
   it('returns the type of the transaction', () => {
-    expect(validExpenseTransaction.getType()).toEqual('expense' as TransactionTypes)
+    expect(validExpenseTransaction.getType()).toEqual('expense' as TransactionType)
   })
 })
