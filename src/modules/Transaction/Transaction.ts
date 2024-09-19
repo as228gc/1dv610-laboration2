@@ -61,9 +61,48 @@ export class Transaction {
     }
   }
 
+  /**
+   * Validates the amount.
+   * @param {number} amount - The amount of money the transaction handles.
+   * @throws {Error} - The amount can not be less than 0.
+   */
   private validateAmount (amount: number) {
     if (amount < 0 ) {
       throw new Error('The amount can not be less than 0.')
     }
+  }
+
+  //Getters
+  
+  /**
+   * Returns the date of the transaction.
+   * @returns {Date} - The date of the transaction.
+   */
+  public getDate(): Date {
+    return this.#date
+  }
+
+  /**
+   * Returns the amount of money the transaction handles.
+   * @returns {number} - The amount of money the transaction handles.
+   */
+  public getAmount(): number {
+    return this.#amount
+  }
+
+  /**
+   * Returns the category of the transaction.
+   * @returns {ExpenseCategories | IncomeCategories } - The category of the transaction.
+   */
+  public getCategory(): ExpenseCategories | IncomeCategories {
+    return this.#category
+  }
+
+  /**
+   * Returns the type of the transaction.
+   * @returns {TransactionTypes} - The type of transaction.
+   */
+  public getType(): TransactionTypes {
+    return this.#type
   }
 }
