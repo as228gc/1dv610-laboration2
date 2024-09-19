@@ -14,6 +14,16 @@ describe('Transaction class tests', () => {
     expect(transaction).toBeDefined()
   })
 
+  it('should create a transaction with a valid income category', () => {
+    const transaction = new Transaction(
+      new Date(),
+      100,
+      TransactionTypes.INCOME,
+      IncomeCategories.SALARY
+    )
+    expect(transaction).toBeDefined()
+  })
+
   it('throws an error if a transaction is created with invalid expense category', () => {
     expect(() => {
       const transaction = new Transaction(
