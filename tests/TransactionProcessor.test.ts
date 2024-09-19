@@ -46,4 +46,25 @@ describe('TransactionProcessor class test', () => {
     let totalIncome = transactionProcessor.getTotalIncome()
     expect(totalIncome).toEqual(500)
   })
+
+  it('returns an array of transactions of the expense category', () => {
+    const transactionProcessor = new TransactionProcessor(transactions)
+    expect(
+      transactionProcessor
+      .getTransactionsByCategory(ExpenseCategory.FOOD)
+    ).toEqual(
+      transactions.slice(0, 5)
+    )
+  })
+
+  it('returns an array of transactions of the income category', () => {
+    const transactionProcessor = new TransactionProcessor(transactions)
+    console.log(transactionProcessor.getTransactionsByCategory(IncomeCategory.SALARY))
+    expect(
+      transactionProcessor
+      .getTransactionsByCategory(IncomeCategory.SALARY)
+    ).toEqual(
+      transactions.slice(5, 10)
+    )
+  })
 })
