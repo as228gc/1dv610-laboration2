@@ -56,4 +56,28 @@ describe('Transaction class tests', () => {
       )
     }).toThrow()
   })
+
+  // Create transaction for testing the getters
+  const validExpenseTransaction = new Transaction(
+    new Date(),
+    100,
+    TransactionTypes.EXPENSE,
+    ExpenseCategories.FOOD
+  )
+
+  it('returns the date of the transaction', () => {
+    expect(validExpenseTransaction.getDate()).toBeInstanceOf(Date)
+  })
+
+  it('returns the amount of money in the transaction', () => {
+    expect(validExpenseTransaction.getAmount()).toEqual(100)
+  })
+
+  it('returns the category of the transaction', () => {
+    expect(validExpenseTransaction.getCategory()).toEqual('food' as ExpenseCategories)
+  })
+
+  it('returns the type of the transaction', () => {
+    expect(validExpenseTransaction.getType()).toEqual('expense' as TransactionTypes)
+  })
 })
