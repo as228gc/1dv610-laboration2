@@ -4,7 +4,7 @@ import { ExpenseCategories } from "../src/enums/ExpenseCategories";
 import { IncomeCategories } from "../src/enums/IncomeCategories";
 
 describe('Transaction class tests', () => {
-  it('should create a transaction with a valid expense category', () => {
+  it('should create a transaction instance with a valid expense category', () => {
     const transaction = new Transaction(
       new Date(),
       100,
@@ -14,7 +14,7 @@ describe('Transaction class tests', () => {
     expect(transaction).toBeDefined()
   })
 
-  it('should create a transaction with a valid income category', () => {
+  it('should create a transaction instance with a valid income category', () => {
     const transaction = new Transaction(
       new Date(),
       100,
@@ -24,7 +24,7 @@ describe('Transaction class tests', () => {
     expect(transaction).toBeDefined()
   })
 
-  it('throws an error if a transaction is created with invalid expense category', () => {
+  it('throws an error if a transaction instance is created with invalid expense category', () => {
     expect(() => {
       const transaction = new Transaction(
         new Date(),
@@ -35,7 +35,7 @@ describe('Transaction class tests', () => {
     }).toThrow()
   })
 
-  it('throws an error if a transaction is created with invalid income category', () => {
+  it('throws an error if a transaction instance is created with invalid income category', () => {
     expect(() => {
       const transaction = new Transaction(
         new Date(),
@@ -46,7 +46,7 @@ describe('Transaction class tests', () => {
     }).toThrow()
   })
 
-  it('throws an error if a transaction entered with a negative amount.', () => {
+  it('throws an error if a transaction instance entered with a negative amount.', () => {
     expect(() => {
       const transaction = new Transaction(
         new Date(),
