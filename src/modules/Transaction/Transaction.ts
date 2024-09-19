@@ -29,13 +29,15 @@ export class Transaction {
     category: ExpenseCategories | IncomeCategories 
   ) {
 
+    // Check if the category is valid, with the given transaction type.
+    this.validateCategory(category, type)
+    this.validateAmount(amount)
+
     this.#date = date
     this.#amount = amount
     this.#category = category
     this.#type = type
 
-    // Check if the category is valid, with the given transaction type.
-    this.validateCategory(this.#category, this.#type)
   }
 
   /**
@@ -56,6 +58,12 @@ export class Transaction {
       type === TransactionTypes.INCOME
       && !(Object.values(IncomeCategories).includes(category as IncomeCategories))){
         throw new Error('The entered category is not a valid income category.')
+    }
+  }
+
+  private validateAmount (amount: number) {
+    if (amount < 0 ) {
+      throw new Error('The amount can not be less than 0.')
     }
   }
 }
