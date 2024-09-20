@@ -19,6 +19,17 @@ export class Report {
   #incomeByCategory: Map<IncomeCategory, number>
   #expenseByCategory: Map<ExpenseCategory, number>
 
+  /**
+   * Creates an instance of the Report class.
+   * 
+   * @param { number } totalIncome - The total amount from the Transaction Type INCOME.
+   * @param { number } totalExpenses - The total amount from the Transaction Type EXPENSE.
+   * @param { number } netBalance - The calculated net balance.
+   * @param { Date } startDate - The date of the first transaction.
+   * @param { Date } endDate - The date of the last transaction.
+   * @param { Map<IncomeCategory, number> } incomeByCategory - The total income for each income category.
+   * @param { Map<ExpenseCategory, number> } expenseByCategory - The total expenses for each expense category.
+   */
   constructor(
     totalIncome: number,
     totalExpenses: number,
@@ -37,6 +48,11 @@ export class Report {
     this.#expenseByCategory = expenseByCategory
   }
 
+  /**
+   * Returns a string representation of the instance.
+   *
+   * @returns {String} A string represantation of the instance.
+   */
   toString(): String {
     return 'Report toString() method'
   }
