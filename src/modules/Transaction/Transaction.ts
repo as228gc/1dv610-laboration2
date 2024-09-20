@@ -1,5 +1,7 @@
 /**
  * @author Alex Söderberg <as228gc@student.lnu.se>
+ * @module Transaction
+ * @version 0.1
  */
 import { ExpenseCategory } from "../../enums/ExpenseCategory"
 import { IncomeCategory } from "../../enums/IncomeCategory"

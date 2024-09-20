@@ -1,3 +1,8 @@
+/**
+ * @author Alex Söderberg <as228gc@student.lnu.se>
+ * @module TransactionProcessor
+ * @version 0.1
+ */
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { IncomeCategory } from "../../enums/IncomeCategory";
 import { TransactionType } from "../../enums/TransactionType";
