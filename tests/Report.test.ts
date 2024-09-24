@@ -94,7 +94,6 @@ describe('Report class tests', () => {
       incomeMap,
       expensesMap
     )
-    console.log(report.getExpensesByCategory())
-    console.log(report.getIncomeByCategory())
+    expect(report).toBeDefined()
   })
 })

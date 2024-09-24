@@ -54,18 +54,6 @@ describe('TransactionProcessor class test', () => {
     expect(transactionProcessor).toBeDefined()
   })
 
-  it('returns the total amount of expenses', () => {
-    const transactionProcessor = new TransactionProcessor(transactions)
-    let totalExpenses = transactionProcessor.getTotalExpenses()
-    expect(totalExpenses).toEqual(1000)
-  })
-
-  it('returns the total amount of income', () => {
-    const transactionProcessor = new TransactionProcessor(transactions)
-    let totalIncome = transactionProcessor.getTotalIncome()
-    expect(totalIncome).toEqual(1000)
-  })
-
   it('returns an array of transactions of the expense category FOOD', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(

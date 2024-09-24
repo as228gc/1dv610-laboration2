@@ -3,6 +3,7 @@
  * @module TransactionProcessor
  * @version 0.1
  */
+
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { IncomeCategory } from "../../enums/IncomeCategory";
 import { TransactionType } from "../../enums/TransactionType";
@@ -22,36 +23,6 @@ export class TransactionProcessor {
    */
   addTransaction(transaction: Transaction): void {
     this.#transactions.push(transaction)
-  }
-
-  /**
-   * Returns the total amount of expenses from the collection of transactions.
-   *
-   * @returns {number} - The total expenses from the array of transactions.
-   */
-  getTotalExpenses(): number {
-    let total: number = 0
-    for (const transaction of this.#transactions) {
-      if (transaction.getType() === TransactionType.EXPENSE) {
-        total += transaction.getAmount()
-      }
-    }
-    return total
-  }
-
-  /**
-   * Returns the total amount of income from the collections of transactions.
-   *
-   * @returns { number } - The total income from the array of transactions.
-   */
-  getTotalIncome(): number {
-    let total: number = 0
-    for (const transaction of this.#transactions) {
-      if (transaction.getType() === TransactionType.INCOME) {
-        total += transaction.getAmount()
-      }
-    }
-    return total
   }
 
   /**
