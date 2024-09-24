@@ -40,7 +40,7 @@ export class TransactionProcessor {
    * @param { ExpenseCategory | IncomeCategory } category - The category to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  getTransactionsByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
+  filterTransactionsByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
       if (transaction.getCategory() === category) {
@@ -56,7 +56,7 @@ export class TransactionProcessor {
    * @param { TransactionType } type - The transaction type to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  getTransactionsByType(type: TransactionType): Array<Transaction> {
+  filterTransactionsByType(type: TransactionType): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
       if (transaction.getType() === type) {

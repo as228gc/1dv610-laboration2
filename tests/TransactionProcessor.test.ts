@@ -74,7 +74,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .getTransactionsByCategory(ExpenseCategory.FOOD)
+      .filterTransactionsByCategory(ExpenseCategory.FOOD)
     ).toEqual(
       transactions.slice(0, 5)
     )
@@ -84,7 +84,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .getTransactionsByCategory(IncomeCategory.SALARY)
+      .filterTransactionsByCategory(IncomeCategory.SALARY)
     ).toEqual(
       transactions.slice(5, 10)
     )
@@ -94,7 +94,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .getTransactionsByType(TransactionType.EXPENSE)
+      .filterTransactionsByType(TransactionType.EXPENSE)
     ).toEqual(
       transactions.slice(0, 5).concat(transactions.slice(10, 15))
     )
@@ -103,7 +103,7 @@ describe('TransactionProcessor class test', () => {
   it('returns an array of transactions of the transaction type INCOME', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
-      transactionProcessor.getTransactionsByType(TransactionType.INCOME)
+      transactionProcessor.filterTransactionsByType(TransactionType.INCOME)
     ).toEqual(
       transactions.slice(5, 10).concat(transactions.slice(15, 20))
     )
