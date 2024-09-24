@@ -74,7 +74,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .filterTransactionsByCategory(ExpenseCategory.FOOD)
+      .filterByCategory(ExpenseCategory.FOOD)
     ).toEqual(
       transactions.slice(0, 5)
     )
@@ -84,7 +84,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .filterTransactionsByCategory(IncomeCategory.SALARY)
+      .filterByCategory(IncomeCategory.SALARY)
     ).toEqual(
       transactions.slice(5, 10)
     )
@@ -94,7 +94,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .filterTransactionsByType(TransactionType.EXPENSE)
+      .filterByType(TransactionType.EXPENSE)
     ).toEqual(
       transactions.slice(0, 5).concat(transactions.slice(10, 15))
     )
@@ -103,9 +103,55 @@ describe('TransactionProcessor class test', () => {
   it('returns an array of transactions of the transaction type INCOME', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
-      transactionProcessor.filterTransactionsByType(TransactionType.INCOME)
+      transactionProcessor.filterByType(TransactionType.INCOME)
     ).toEqual(
       transactions.slice(5, 10).concat(transactions.slice(15, 20))
     )
+  })
+
+  it('sorts an array of transaction by date', () => {
+    const transactionsMock: Array<Transaction> = new Array<Transaction>
+    // Create three transactions with different dates.
+    const transaction1 = new Transaction(
+      new Date('2024-09-23'),
+      100,
+      TransactionType.EXPENSE,
+      ExpenseCategory.FOOD
+    )
+
+    const transaction2 = new Transaction(
+      new Date('2024-09-21'),
+      100,
+      TransactionType.EXPENSE,
+      ExpenseCategory.FOOD
+    )
+
+    const transaction3 = new Transaction(
+      new Date('2024-09-22'),
+      100,
+      TransactionType.EXPENSE,
+      ExpenseCategory.FOOD
+    )
+
+    // Create Processor item with array of unsorted transactions
+    transactionsMock.push(transaction1)
+    transactionsMock.push(transaction2)
+    transactionsMock.push(transaction3)
+
+    const processor = new TransactionProcessor(transactionsMock)
+
+    // Compare first element of sorted array to transaction with earliest date.
+    expect(processor.sortByDate()[0]).toEqual(transaction2)
+
+    // Empty array
+    while (transactionsMock.length > 0) {
+      transactionsMock.pop()
+    }
+
+    // Add the transactions in order by date before comparison
+    transactionsMock.push(transaction2, transaction3, transaction1)
+
+    // Compare transaction arrays
+    expect(processor.sortByDate()).toEqual(transactionsMock)
   })
 })
