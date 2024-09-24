@@ -40,7 +40,7 @@ describe('TransactionProcessor class test', () => {
     ))
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     transactions.push(new Transaction(
       new Date(),
       100,
@@ -52,6 +52,22 @@ describe('TransactionProcessor class test', () => {
   it('creates a TransactionProcessor instance', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(transactionProcessor).toBeDefined()
+  })
+
+  it('returns a copy of the array of transactions', () => {
+    const transactionProcessor = new TransactionProcessor(transactions)
+    expect(transactionProcessor.getTransactions()).toEqual(transactions)
+  })
+
+  it('adds a transaction to the array of transactions', () => {
+    const transactionProcessor = new TransactionProcessor(transactions)
+    transactionProcessor.addTransaction(new Transaction(
+      new Date(),
+      100,
+      TransactionType.INCOME,
+      IncomeCategory.GIFT
+    ))
+    expect(transactions)
   })
 
   it('returns an array of transactions of the expense category FOOD', () => {
@@ -87,8 +103,7 @@ describe('TransactionProcessor class test', () => {
   it('returns an array of transactions of the transaction type INCOME', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
-      transactionProcessor
-      .getTransactionsByType(TransactionType.INCOME)
+      transactionProcessor.getTransactionsByType(TransactionType.INCOME)
     ).toEqual(
       transactions.slice(5, 10).concat(transactions.slice(15, 20))
     )

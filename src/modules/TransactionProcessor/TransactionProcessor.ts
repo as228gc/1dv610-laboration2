@@ -17,12 +17,21 @@ export class TransactionProcessor {
   }
 
   /**
-   * Adds a transaction to the collection of transactions.
+   * Adds a transaction to the array of transactions.
    *
    * @param { Transaction } transaction - The transaction to be added to the array.
    */
   addTransaction(transaction: Transaction): void {
     this.#transactions.push(transaction)
+  }
+
+  /**
+   * Returns a copy of the array of transactions.
+   *
+   * @returns {Array<Transaction>} A copy of the array of transactions.
+   */
+  getTransactions(): Array<Transaction> {
+    return [...this.#transactions]
   }
 
   /**
