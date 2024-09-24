@@ -11,9 +11,9 @@ import { IncomeCategory } from "../../enums/IncomeCategory"
  * Represents a financial report.
  */
 export class Report {
-  #totalIncome: number
-  #totalExpenses: number
-  #netBalance :number
+  #totalIncome: number = 0
+  #totalExpenses: number = 0
+  #netBalance :number = 0
   #startDate: Date
   #endDate: Date
   #incomeByCategory: Map<IncomeCategory, number>
