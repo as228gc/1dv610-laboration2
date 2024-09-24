@@ -13,7 +13,7 @@ export class TransactionProcessor {
   #transactions: Array<Transaction>
 
   constructor(transactions: Array<Transaction>) {
-    this.#transactions = transactions
+    this.#transactions = [...transactions]
   }
 
   /**
@@ -35,12 +35,12 @@ export class TransactionProcessor {
   }
 
   /**
-   * Returns an array filtered by the chosen category.
+   * Returns an array of transactions filtered by the chosen category.
    *
    * @param { ExpenseCategory | IncomeCategory } category - The category to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  filterTransactionsByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
+  filterByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
       if (transaction.getCategory() === category) {
@@ -51,12 +51,12 @@ export class TransactionProcessor {
   }
 
   /**
-   * Returns an array giltered by the chosen transaction type.
+   * Returns an array of transactions filtered by the chosen transaction type.
    *
    * @param { TransactionType } type - The transaction type to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  filterTransactionsByType(type: TransactionType): Array<Transaction> {
+  filterByType(type: TransactionType): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
       if (transaction.getType() === type) {
@@ -64,5 +64,14 @@ export class TransactionProcessor {
       }
     }
     return filtered
+  }
+
+  /**
+   * Returns an array of transactions sorted by date.
+   *
+   * @returns { Array<Transaction> } An array of transactions sorted by date
+   */
+  sortByDate(): Array<Transaction> {
+    return this.#transactions.sort((a, b) => a.getDate().getTime() - b.getDate().getTime())
   }
 }

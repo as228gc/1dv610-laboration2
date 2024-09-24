@@ -29,7 +29,7 @@ export class ReportGenerator {
     let total: number = 0
 
     // For every transaction of the type EXPENSE
-    for (const transaction of this.#processor.filterTransactionsByType(TransactionType.EXPENSE)) {
+    for (const transaction of this.#processor.filterByType(TransactionType.EXPENSE)) {
       if (transaction.getType() === TransactionType.EXPENSE) {
         total += transaction.getAmount()
       }
@@ -46,7 +46,7 @@ export class ReportGenerator {
     let total: number = 0
 
     // For every transaction of the type INCOME
-    for (const transaction of this.#processor.filterTransactionsByType(TransactionType.INCOME)) {
+    for (const transaction of this.#processor.filterByType(TransactionType.INCOME)) {
       if (transaction.getType() === TransactionType.INCOME) {
         total += transaction.getAmount()
       }
@@ -64,7 +64,11 @@ export class ReportGenerator {
   }
 
   // generateSummaryReport(): Report {
-
+  //   const report: Report = new Report(
+  //     this.calculateIncome(),
+  //     this.calculateExpenses(),
+  //     this.calculateNetBalance(),
+  //   )
   // }
 
   // generateCategoryReport(category: IncomeCategory | ExpenseCategory): Report {
