@@ -4,7 +4,7 @@ import { TransactionType } from "../src/enums/TransactionType";
 import { Report } from "../src/modules/Report/Report";
 import { Transaction } from "../src/modules/Transaction/Transaction";
 
-describe('Report test class', () => {
+describe('Report class tests', () => {
 
   // Create transacitons array for expenses and income, to test Map.
   const transactions: Array<Transaction> = []
@@ -36,8 +36,12 @@ describe('Report test class', () => {
   const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
   const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
 
+  // Could be a function, with parameters of type and category
+
   for (const transaction of transactions) {
+    // Check if the transaction is of the type EXPENSE
     if (transaction.getType() === TransactionType.EXPENSE) {
+
       // If the key, value pair already exists in the Map,
       // add the value of the transaciton to correct key value pair
       if (expensesMap.has(transaction.getCategory() as ExpenseCategory)) {
@@ -47,6 +51,7 @@ describe('Report test class', () => {
         expensesMap
           .set(
             transaction.getCategory() as ExpenseCategory,
+
             // Add the value of the transaction to the category.
             currentValue + transaction.getAmount()
           )
@@ -58,7 +63,24 @@ describe('Report test class', () => {
           )
       }
     } else if (transaction.getType() === TransactionType.INCOME) {
-      incomeMap.set(transaction.getCategory() as IncomeCategory, transaction.getAmount())
+      if (incomeMap.has(transaction.getCategory() as IncomeCategory)) {
+
+        // Check if the value is currently undefined, if so, set the value to 0
+        const currentValue = incomeMap.get(transaction.getCategory() as IncomeCategory) || 0
+        incomeMap
+          .set(
+            transaction.getCategory() as IncomeCategory,
+            
+            // Add the value of the transaction to the category.
+            currentValue + transaction.getAmount()
+          )
+      } else {
+        incomeMap
+          .set(
+            transaction.getCategory() as IncomeCategory,
+            transaction.getAmount()
+          )
+      }
     }
   }
 
@@ -69,8 +91,10 @@ describe('Report test class', () => {
       0,
       new Date(),
       new Date(),
-      new Map<IncomeCategory.SALARY, 100>,
-      new Map<ExpenseCategory.FOOD, 100>
+      incomeMap,
+      expensesMap
     )
+    console.log(report.getExpensesByCategory())
+    console.log(report.getIncomeByCategory())
   })
 })
