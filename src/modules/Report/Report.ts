@@ -48,12 +48,42 @@ export class Report {
     this.#expenseByCategory = expenseByCategory
   }
 
+  getExpensesByCategory(): Object {
+    type Summary = {
+      Category: ExpenseCategory,
+      TotalAmount: number
+    }
+
+    const expenses = <Summary>{}
+
+    this.#expenseByCategory.forEach((value: number, key: ExpenseCategory) => {
+      expenses.Category = key
+      expenses.TotalAmount = value
+    })
+
+    return expenses
+  }
+
+  getIncomeByCategory(): void {
+    type Summary = {
+      Category: IncomeCategory,
+      TotalAmount: number
+    }
+
+    const income = <Summary>{}
+    this.#incomeByCategory.forEach((value: number, key: IncomeCategory) => {
+      income.Category = key
+      income.TotalAmount = value
+    })
+  }
+
   /**
    * Returns a string representation of the instance.
    *
    * @returns {String} A string represantation of the instance.
    */
   toString(): String {
-    return 'Report toString() method'
+    let summary:String = ''
+    return summary
   }
 }
