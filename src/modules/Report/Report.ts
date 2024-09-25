@@ -48,7 +48,7 @@ export class Report {
     this.#expenseByCategory = expenseByCategory
   }
 
-  getExpensesByCategory(): Object {
+  private getExpensesByCategory(): Object {
     type Summary = {
       Category: ExpenseCategory,
       TotalAmount: number
@@ -64,7 +64,7 @@ export class Report {
     return expenses
   }
 
-  getIncomeByCategory(): void {
+  private getIncomeByCategory(): void {
     type Summary = {
       Category: IncomeCategory,
       TotalAmount: number
@@ -80,10 +80,28 @@ export class Report {
   /**
    * Returns a string representation of the instance.
    *
-   * @returns {String} A string represantation of the instance.
+   * @returns { String } A string represantation of the instance.
    */
   toString(): String {
-    let summary:String = ''
+    let summary: String = ''
+    summary = `
+    Total income: ${this.#totalIncome}\n
+    Total expenses: ${this.#totalExpenses}\n
+    Net balance: ${this.#netBalance}\n
+    Start date: ${this.#startDate}\n
+    End date: ${this.#endDate}\n
+    Expense by category:\n`
+
+    for (const expense of this.#expenseByCategory) {
+      summary += `      ${expense[0]}: ${expense[1]}\n`
+    }
+
+    summary += `    Income by category:\n`
+
+    for (const income of this.#incomeByCategory) {
+      summary += `      ${income[0]}: ${income[1]} \n`
+    }
+
     return summary
   }
 }
