@@ -48,33 +48,42 @@ export class Report {
     this.#expenseByCategory = expenseByCategory
   }
 
-  private getExpensesByCategory(): Object {
+  // Not Neccessary?
+  private formatExpensesByCategory(): Array<any> {
     type Summary = {
       Category: ExpenseCategory,
       TotalAmount: number
     }
 
-    const expenses = <Summary>{}
-
+    const expensesCategories = Array<Summary>()
     this.#expenseByCategory.forEach((value: number, key: ExpenseCategory) => {
-      expenses.Category = key
-      expenses.TotalAmount = value
+      const summary: Summary = {
+        Category: key,
+        TotalAmount: value
+      }
+      expensesCategories.push(summary)
     })
 
-    return expenses
+    return expensesCategories
   }
 
-  private getIncomeByCategory(): void {
+  // Not Neccessary?
+  private formatIncomeByCategory(): Array<any> {
     type Summary = {
       Category: IncomeCategory,
       TotalAmount: number
     }
 
-    const income = <Summary>{}
+    const incomeByCategories = Array<Summary>()
     this.#incomeByCategory.forEach((value: number, key: IncomeCategory) => {
-      income.Category = key
-      income.TotalAmount = value
+      const summary: Summary = {
+        Category: key,
+        TotalAmount: value
+      }
+      incomeByCategories.push(summary)
     })
+
+    return incomeByCategories
   }
 
   /**
@@ -103,5 +112,17 @@ export class Report {
     }
 
     return summary
+  }
+
+  toJSON(): Object {
+    return {
+      "totalIncome": this.#totalIncome,
+      "totalExpenses": this.#totalExpenses,
+      "netBalance": this.#netBalance,
+      "startDate": this.#startDate,
+      "endDate": this.#endDate,
+      "expenseByCategory": this.formatExpensesByCategory(),
+      "incomeByCategory": this.formatIncomeByCategory()
+    }
   }
 }
