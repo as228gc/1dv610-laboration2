@@ -14,7 +14,7 @@ describe('ReportGenerator class test', () => {
   for (let i = 0; i < 5; i++) {
     transactions.push(
       new Transaction(
-        new Date(),
+        new Date('2024-09-23'),
         100,
         TransactionType.EXPENSE,
         ExpenseCategory.FOOD
@@ -26,7 +26,7 @@ describe('ReportGenerator class test', () => {
   for (let i = 0; i < 5; i++) {
     transactions.push(
       new Transaction(
-        new Date(),
+        new Date('2024-09-25'),
         100,
         TransactionType.INCOME,
         IncomeCategory.SALARY
@@ -40,21 +40,29 @@ describe('ReportGenerator class test', () => {
     expect(generator).toBeDefined()
   })
 
+  it('returns the total amount of income', () => {
+    const processor = new TransactionProcessor(transactions)
+    const generator = new ReportGenerator(processor)
+    expect(generator.calculateIncome()).toEqual(500)
+  })
+
+  
+  it('returns the total amount of expenses', () => {
+    const processor = new TransactionProcessor(transactions)
+    const generator = new ReportGenerator(processor)
+    expect(generator.calculateExpenses()).toEqual(500)
+  })
+  
   it('should generate the net balance of the transactions', () => {
     const processor = new TransactionProcessor(transactions)
     const generator = new ReportGenerator(processor)
     expect(generator.calculateNetBalance()).toEqual(0)
   })
 
-  it('returns the total amount of expenses', () => {
+  it('should generate a report covering all transactions', () => {
     const processor = new TransactionProcessor(transactions)
     const generator = new ReportGenerator(processor)
-    expect(generator.calculateExpenses()).toEqual(500)
-  })
-
-  it('returns the total amount of income', () => {
-    const processor = new TransactionProcessor(transactions)
-    const generator = new ReportGenerator(processor)
-    expect(generator.calculateIncome()).toEqual(500)
+    console.log(generator.generateSummaryReport().toString())
+    expect(generator.generateSummaryReport().toString)
   })
 })
