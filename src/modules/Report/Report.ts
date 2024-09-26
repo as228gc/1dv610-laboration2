@@ -48,7 +48,12 @@ export class Report {
     this.#expenseByCategory = expenseByCategory
   }
 
-  // Not Neccessary?
+  /**
+   * Returns an array of objects containing the same information as the map.
+   * Making the object's keys and values readable when accessing the object.
+   *
+   * @returns { Array<any> } An array of objects containing category and total amount.
+   */
   private formatExpensesByCategory(): Array<any> {
     type Summary = {
       Category: ExpenseCategory,
@@ -67,7 +72,12 @@ export class Report {
     return expensesCategories
   }
 
-  // Not Neccessary?
+  /**
+   * Returns an array of objects containing the same information as the map.
+   * Making the object's keys and values readable when accessing the object.
+   *
+   * @returns { Array<any> } An array of objects containing category and total amount.
+   */
   private formatIncomeByCategory(): Array<any> {
     type Summary = {
       Category: IncomeCategory,
