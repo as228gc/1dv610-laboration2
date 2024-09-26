@@ -101,14 +101,14 @@ export class Report {
     End date: ${this.#endDate}\n
     Expense by category:\n`
 
-    for (const expense of this.#expenseByCategory) {
-      summary += `      ${expense[0]}: ${expense[1]}\n`
+    for (const expense of this.formatExpensesByCategory()) {
+      summary += `      ${expense.Category}: ${expense.TotalAmount}\n`
     }
 
     summary += `    Income by category:\n`
 
-    for (const income of this.#incomeByCategory) {
-      summary += `      ${income[0]}: ${income[1]} \n`
+    for (const income of this.formatIncomeByCategory()) {
+      summary += `      ${income.Category}: ${income.TotalAmount}\n`
     }
 
     return summary
