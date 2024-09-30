@@ -30,12 +30,15 @@ export class ReportGenerator {
    *
    * @returns { number } - The total income from the array of transactions.
    */
-  calculateIncome(): number {
+  calculateIncome(startDate: Date, endDate: Date): number {
     let total: number = 0
+
+    const transactionsInTimeSpan = this.#processor.filterByTimeSpan(startDate, endDate)
 
     // For every transaction of the type INCOME
     for (const transaction of this.#processor.filterByType(TransactionType.INCOME)) {
-      if (transaction.getType() === TransactionType.INCOME) {
+      if (transaction.getType() === TransactionType.INCOME
+        && transactionsInTimeSpan.includes(transaction)) {
         total += transaction.getAmount()
       }
     }
@@ -47,13 +50,19 @@ export class ReportGenerator {
    *
    * @returns {number} - The total expenses from the array of transactions.
    */
-  calculateExpenses(): number {
+  calculateExpenses(startDate: Date, endDate: Date): number {
     let total: number = 0
 
-    // For every transaction of the type EXPENSE
+    const transactionsInTimeSpan = this.#processor.filterByTimeSpan(startDate, endDate)
+
+    // For every transaction of the type EXPENSE.
     for (const transaction of this.#processor.filterByType(TransactionType.EXPENSE)) {
-      if (transaction.getType() === TransactionType.EXPENSE) {
+      // If the transaction matches the given time span.
+      if (transaction.getType() === TransactionType.EXPENSE 
+        && transactionsInTimeSpan.includes(transaction)) {
+
         total += transaction.getAmount()
+
       }
     }
     return total
@@ -61,12 +70,12 @@ export class ReportGenerator {
 
 
   /**
-   * Returns the net balance of the transactions.
+   * Returns the net balance of the transactions. (Income - (minus) Expenses)
    *
    * @returns { number } The net balance.
    */
-  calculateNetBalance(): number {
-    return this.calculateIncome() - this.calculateExpenses() 
+  calculateNetBalance(firstDate: Date, lastDate: Date): number {
+    return this.calculateIncome(firstDate, lastDate) - this.calculateExpenses(firstDate, lastDate) 
   }
 
   /**
@@ -83,9 +92,9 @@ export class ReportGenerator {
       .getDate()
 
     const report: Report = new Report(
-      this.calculateIncome(),
-      this.calculateExpenses(),
-      this.calculateNetBalance(),
+      this.calculateIncome(firstDate, lastDate),
+      this.calculateExpenses(firstDate, lastDate),
+      this.calculateNetBalance(firstDate, lastDate),
       firstDate,
       lastDate,
       this.summarizeCategories().incomeByCategory,
@@ -95,21 +104,20 @@ export class ReportGenerator {
     return report
   }
 
-  // generateCategoryReport(category: IncomeCategory | ExpenseCategory): Report {
-
+  /**
+   * Generates a report from the first day of the current month to current date.
+   *
+   * @returns { Report } A report covering the transactions during the time span.
+   */
+  // generateMonthReport(): Report {
   // }
 
-  // /**
-  //  * Returns a report of the transactions of the chosen type.
-  //  *
-  //  * @param {TransactionType} type - Which type of transaction the report should cover.
-  //  * @returns {Report} - A report of the transactions of the chosen type.
-  //  */
-  // generateTypeReport(type: TransactionType): Report {
-
-  // }
-
-  // generateMonthlyReport() {
+  /**
+   * Generates a report from the first day of the current year to current date.
+   *
+   * @returns { Report } A report covering the transactions during the time span.
+   */
+  // generateYearReport(): Report {
 
   // }
 
