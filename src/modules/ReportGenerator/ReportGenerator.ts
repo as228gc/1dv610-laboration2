@@ -74,8 +74,8 @@ export class ReportGenerator {
    *
    * @returns { number } The net balance.
    */
-  calculateNetBalance(firstDate: Date, lastDate: Date): number {
-    return this.calculateIncome(firstDate, lastDate) - this.calculateExpenses(firstDate, lastDate) 
+  calculateNetBalance(startDate: Date, endDate: Date): number {
+    return this.calculateIncome(startDate, endDate) - this.calculateExpenses(startDate, endDate) 
   }
 
   /**
