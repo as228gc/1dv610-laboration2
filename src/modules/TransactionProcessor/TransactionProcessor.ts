@@ -35,6 +35,25 @@ export class TransactionProcessor {
   }
 
   /**
+   * Returns an array of transactions that occurs within the given time span
+   *
+   * @param { Date } startDate - The date to start from
+   * @param { Date } endDate - The date to stop at
+   * @returns { Array<Transaction> } An array of the transactions within the time span
+   */
+  filterByTimeSpan(startDate: Date, endDate: Date): Array<Transaction> {
+    const transactions = new Array<Transaction>()
+
+    for (const transaction of this.#transactions) {
+      if (transaction.getDate() >= startDate && transaction.getDate() <= endDate) {
+        transactions.push(transaction)
+      }
+    }
+
+    return [...transactions]
+  }
+
+  /**
    * Returns an array of transactions filtered by the chosen category.
    *
    * @param { ExpenseCategory | IncomeCategory } category - The category to be selected out of the transactions.
