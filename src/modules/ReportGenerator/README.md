@@ -1,0 +1,1 @@
+Return type any for summarizeCategories because I don't know how to return a Object and get access to it's properties otherwise.
