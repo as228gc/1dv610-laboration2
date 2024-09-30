@@ -3,6 +3,8 @@ import { IncomeCategory } from "../src/enums/IncomeCategory";
 import { TransactionType } from "../src/enums/TransactionType";
 import { Report } from "../src/modules/Report/Report";
 import { Transaction } from "../src/modules/Transaction/Transaction";
+import { ReportGenerator } from "../src/modules/ReportGenerator/ReportGenerator";
+import { TransactionProcessor } from "../src/modules/TransactionProcessor/TransactionProcessor";
 
 describe('Report class tests', () => {
 
@@ -13,7 +15,7 @@ describe('Report class tests', () => {
   for (let i = 0; i < 5; i++) {
     transactions.push(
       new Transaction(
-        new Date(),
+        new Date('2024-09-30'),
         100,
         TransactionType.EXPENSE,
         ExpenseCategory.FOOD
@@ -25,7 +27,7 @@ describe('Report class tests', () => {
   for (let i = 0; i < 5; i++) {
     transactions.push(
       new Transaction(
-        new Date(),
+        new Date('2024-09-30'),
         100,
         TransactionType.INCOME,
         IncomeCategory.SALARY
@@ -33,67 +35,58 @@ describe('Report class tests', () => {
     )
   }
 
-  const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
-  const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
-
-  // Could be a function, with parameters of type and category
-
-  for (const transaction of transactions) {
-    // Check if the transaction is of the type EXPENSE
-    if (transaction.getType() === TransactionType.EXPENSE) {
-
-      // If the key, value pair already exists in the Map,
-      // add the value of the transaciton to correct key value pair
-      if (expensesMap.has(transaction.getCategory() as ExpenseCategory)) {
-
-        // Check if the value is currently undefined, if so, set the value to 0
-        const currentValue = expensesMap.get(transaction.getCategory() as ExpenseCategory) || 0
-        expensesMap
-          .set(
-            transaction.getCategory() as ExpenseCategory,
-
-            // Add the value of the transaction to the category.
-            currentValue + transaction.getAmount()
-          )
-      } else {
-        expensesMap
-          .set(
-            transaction.getCategory() as ExpenseCategory,
-            transaction.getAmount()
-          )
-      }
-    } else if (transaction.getType() === TransactionType.INCOME) {
-      if (incomeMap.has(transaction.getCategory() as IncomeCategory)) {
-
-        // Check if the value is currently undefined, if so, set the value to 0
-        const currentValue = incomeMap.get(transaction.getCategory() as IncomeCategory) || 0
-        incomeMap
-          .set(
-            transaction.getCategory() as IncomeCategory,
-            
-            // Add the value of the transaction to the category.
-            currentValue + transaction.getAmount()
-          )
-      } else {
-        incomeMap
-          .set(
-            transaction.getCategory() as IncomeCategory,
-            transaction.getAmount()
-          )
-      }
-    }
+  for (let i = 0; i < 5; i++) {
+    transactions.push(
+      new Transaction(
+        new Date('2024-09-30'),
+        200,
+        TransactionType.INCOME,
+        IncomeCategory.GIFT
+      )
+    )
   }
 
+  const processor = new TransactionProcessor(transactions)
+  const generator = new ReportGenerator(processor)
+
   it('should create a report instance with a correctly entered constructor', () => {
-    const report = new Report(
-      100,
-      100,
-      0,
-      new Date(),
-      new Date(),
-      incomeMap,
-      expensesMap
-    )
+    const report = generator.generateSummaryReport()
     expect(report).toBeDefined()
+  })
+
+  it('should return a JSON representation of the instance', () => {
+    const report = generator.generateSummaryReport()
+    expect(report.toJSON()).toEqual(
+      {
+        totalIncome: 1500,
+        totalExpenses: 500,
+        netBalance: 1000,
+        startDate: new Date('2024-09-30T00:00:00.000Z'),
+        endDate: new Date('2024-09-30T00:00:00.000Z'),
+        expenseByCategory: [ { Category: 'food', TotalAmount: 500 } ],
+        incomeByCategory: [ { Category: 'salary', TotalAmount: 500 }, { Category: 'gift', TotalAmount: 1000 } ]
+      }
+    )
+  })
+
+  it('should return a string representation of the instance', () => {
+    const report = generator.generateSummaryReport()
+    expect(report.toString()).toEqual(
+      `
+    Total income: 1500
+
+    Total expenses: 500
+
+    Net balance: 1000
+
+    Start date: Mon Sep 30 2024 02:00:00 GMT+0200 (Central European Summer Time)
+
+    End date: Mon Sep 30 2024 02:00:00 GMT+0200 (Central European Summer Time)
+
+    Expense by category:
+      food: 500
+    Income by category:
+      salary: 500
+      gift: 1000\n`)
   })
 })
