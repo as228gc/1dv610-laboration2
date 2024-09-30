@@ -4,7 +4,6 @@ import { TransactionType } from "../src/enums/TransactionType"
 import { Transaction } from "../src/modules/Transaction/Transaction"
 import { ExpenseCategory } from "../src/enums/ExpenseCategory"
 import { IncomeCategory } from "../src/enums/IncomeCategory"
-import { Report } from "../src/modules/Report/Report"
 
 describe('ReportGenerator class test', () => {
 
