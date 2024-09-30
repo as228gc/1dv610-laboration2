@@ -1,6 +1,6 @@
 # Personal finance report
 
-This module is used to get reports by, time, or category and generate a report from given constraints.
+This module is used to get reports by time and generate a report depending on given constraints.
 
 Installation guide:
 Install dependencies: npm install
@@ -12,3 +12,6 @@ Run the test with detailed information: npm run test:detail
 The module is developed using TypeScript. Start the program by writing "npm start" in the console.
 
 The module is tested using the npm library Jest.
+
+DEMO
+// Create a transaction instance of the type EXPENSE and category FOOD.
