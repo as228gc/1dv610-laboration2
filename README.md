@@ -15,3 +15,6 @@ The module is tested using the npm library Jest.
 
 DEMO
 // Create a transaction instance of the type EXPENSE and category FOOD.
+
+
+You can find the reflections and naming convention in the projects Wiki.
