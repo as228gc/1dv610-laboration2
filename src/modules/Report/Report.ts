@@ -102,8 +102,7 @@ export class Report {
    * @returns { String } A string represantation of the instance.
    */
   toString(): String {
-    let summary: String = ''
-    summary = `
+    let summary: String = `
     Total income: ${this.#totalIncome}\n
     Total expenses: ${this.#totalExpenses}\n
     Net balance: ${this.#netBalance}\n
