@@ -59,9 +59,9 @@ describe('TransactionProcessor class test', () => {
     expect(transactionProcessor.getTransactions()).toEqual(transactions)
   })
 
-  it('adds a transaction to the array of transactions', () => {
+  it('appends a transaction to the array of transactions', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
-    transactionProcessor.addTransaction(new Transaction(
+    transactionProcessor.appendTransaction(new Transaction(
       new Date(),
       100,
       TransactionType.INCOME,

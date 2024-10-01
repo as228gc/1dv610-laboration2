@@ -17,11 +17,11 @@ export class TransactionProcessor {
   }
 
   /**
-   * Adds a transaction to the array of transactions.
+   * Appends a transaction to the array of transactions.
    *
    * @param { Transaction } transaction - The transaction to be added to the array.
    */
-  addTransaction(transaction: Transaction): void {
+  appendTransaction(transaction: Transaction): void {
     this.#transactions.push(transaction)
   }
 
