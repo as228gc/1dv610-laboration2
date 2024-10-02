@@ -83,7 +83,7 @@ export class ReportGenerator {
    *
    * @returns { Report } A report containing a summary of all transactions.
    */
-  generateSummaryReport(): Report {
+  generateReport(): Report {
     // Get the transactions with the earliest and latest date
     const firstDate: Date = this.#processor.sortByDate()[0].getDate()
 

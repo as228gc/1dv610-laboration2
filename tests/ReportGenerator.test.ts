@@ -80,7 +80,7 @@ describe('ReportGenerator class test', () => {
 
   it('should generate a report covering all transactions', () => {
     const generator = new ReportGenerator(processor)
-    const report = generator.generateSummaryReport()
+    const report = generator.generateReport()
     expect(report.toJSON()).toEqual(
       {
         totalIncome: testValue * 5,

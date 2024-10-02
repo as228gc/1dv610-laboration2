@@ -50,12 +50,12 @@ describe('Report class tests', () => {
   const generator = new ReportGenerator(processor)
 
   it('should create a report instance with a correctly entered constructor', () => {
-    const report = generator.generateSummaryReport()
+    const report = generator.generateReport()
     expect(report).toBeDefined()
   })
 
   it('should return a JSON representation of the instance', () => {
-    const report = generator.generateSummaryReport()
+    const report = generator.generateReport()
     expect(report.toJSON()).toEqual(
       {
         totalIncome: 1500,
@@ -70,7 +70,7 @@ describe('Report class tests', () => {
   })
 
   it('should return a string representation of the instance', () => {
-    const report = generator.generateSummaryReport()
+    const report = generator.generateReport()
     expect(report.toString()).toEqual(
       `
     Total income: 1500
