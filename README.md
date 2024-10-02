@@ -3,7 +3,7 @@
 This module is used to get reports by time and generate a report depending on given constraints. The module could also be used to handle and categorize transactions.
 
 ## Installation guide:<br/>
-Write ```npm i tra-ma``` in console. Verify that the version is 1.0.3 in your package.json.
+Write ```npm i tra-ma``` in console. Verify that the version is 1.0.4 in your package.json.
 
 Importing the module:
 ```
