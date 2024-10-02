@@ -22,6 +22,7 @@ The module is built using TypeScript. <br>
 The module is tested using the npm library Jest. [Link to test report](https://github.com/as228gc/1dv610-laboration2/wiki/Test-report)
 
 For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
+
 Link to README for each class and enums:
 * [Enums](src/enums/README.md)
 * [Transaction](src/modules/Transaction/README.md)
