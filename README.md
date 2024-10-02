@@ -22,6 +22,6 @@ The module is tested using the npm library Jest. [Link to test report](https://g
 
 For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
 
-You can find the reflections and naming convention in the projects [Wiki](https://github.com/as228gc/1dv610-laboration2/wiki).
+You can find a class diagram an the reflections and naming convention in the projects [Wiki](https://github.com/as228gc/1dv610-laboration2/wiki).
 
 Watch open issues to see future devlopment of the module.
