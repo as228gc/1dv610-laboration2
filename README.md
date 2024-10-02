@@ -53,10 +53,16 @@ You can find a class diagram in the projects [Wiki](https://github.com/as228gc/1
 
 My reflections of the code quality: [Link to reflections](/reflektioner.md)
 
-Watch [Open Issues](https://github.com/as228gc/1dv610-laboration2/issues) to see future devlopment of the module.
+Watch [Open Issues](https://github.com/as228gc/1dv610-laboration2/issues) to see future development of the module.
 
 Link to the module on npm: https://www.npmjs.com/package/tra-ma
 
 The module is built using TypeScript.
 
 The module is tested using the npm library Jest. [Link to test report](/testrapport.md)
+
+If you want to run the tests:
+* Download this repository
+* Open it up in your IDE
+* Compile the application by writing ```npm run build``` in the terminal.
+* Run the detailed tests by using the command ```npm run test:detail``` in the terminal
