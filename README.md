@@ -1,21 +1,26 @@
-# Personal finance report
+# Transaction manager and report module
 
 This module is used to get reports by time and generate a report depending on given constraints.
 
 Installation guide:
-Install dependencies: npm install
-Compile the program: npm run build
-Run the program: npm start
-Run the tests: npm run test
-Run the test with detailed information: npm run test:detail
+Write ```npm i tra-ma``` in console. Verify that the version is 1.0.3.
 
-The module is developed using TypeScript. Start the program by writing "npm start" in the console.
+Importing the module:
+```
+import {
+         Transaction,
+         TransactionProcessor,
+         ReportGenerator,
+         Report,
+         TransactionType,
+         ExpenseCategory,
+         IncomeCategory
+       } from "tra-ma"
+```
 
-The module is tested using the npm library Jest.
+The module is tested using the npm library Jest. [Link to test report](https://github.com/as228gc/1dv610-laboration2/wiki/Test-report)
 
-DEMO
-// Create a transaction instance of the type EXPENSE and category FOOD.
-
+For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
 
 You can find the reflections and naming convention in the projects Wiki.
 
