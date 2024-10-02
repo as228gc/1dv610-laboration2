@@ -105,24 +105,6 @@ export class ReportGenerator {
   }
 
   /**
-   * Generates a report from the first day of the current month to current date.
-   *
-   * @returns { Report } A report covering the transactions during the time span.
-   */
-  // generateMonthReport(): Report {
-  // }
-
-  /**
-   * Generates a report from the first day of the current year to current date.
-   *
-   * @returns { Report } A report covering the transactions during the time span.
-   */
-  // generateYearReport(): Report {
-
-  // }
-
-
-  /**
    * Returns an object containing the total amount of expenses and income for each category.
    *
    * @returns { any } An object containing the maps of income and expenses by category.
