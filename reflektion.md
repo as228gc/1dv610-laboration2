@@ -165,4 +165,17 @@ I am not sure if this applies to constructors, but in this case, I think it shou
 </table>
 
 
-Additional reflections. Comments are redundant, and could be avoided to make the code more clear. Some snippets of code does not need an explanation.
+
+This document is a reflection of the application of practices from the book "Clean Code". The purpose is to explain the naming of classes, methods and variables throughout the module.
+
+I had method names like filterTransactionsByCategory, in this case i changed the methods name to filterByCategory because the modules main responsibility is to handle an array of transactions and therefore I do not have to use it in every name of the methods. The results is a shorter and understandable method name, which leads to more readable code.
+
+The variable names I chose are sometimes repetetive and appear in multiple different methods. This could make the ability to search for specific variables harder as there are several results. Variables like transaction, income, and expense are used throughout the module.
+
+Referring to the book Clean Code, it says that you should not use the word "Processor" in a class name. In this module I have created a class called TransactionProcessor, which clearly includes the word "Processor". In this case, the only responsibility of the class is to handle an array of transactions, and in my eyes that is a useful name to understand what the class is used for. Although I could have changed the naming of this class to follow the recommendations of the book, I think that the current naming is not horrible but could of course be improved.
+
+Currently the ReportGenerator has a private method called summarizeCategories, which contains a lot of code, and could also be renamed to be more understandable. This method could be divided in to smaller well named methods, to increase readability for the developer. I did not have the time to improve this in this laboration. Clean Code mentions big functions in chapter 3 (Small!), and I could not follow this practice in this case.
+
+As I am used to write a lot of comments, and been taught to do that, I realize that I have written a lot of redundant comments. My purpose with the written comment is to make it clear for a future reader to understand what I have been writing. But it is actually the wrong approach. The code should be named correctly and clearly show what it is supposed to do. It should not need a comment describing what it does. 
+
+Overall, I have improved as a developer during the building of this module. I have learnt some new technologies, as using TypeScript and deploying code to npm. Also I have understood the importance of making class diagrams parallel to the programming. It increases the structuring and makes it easier for me as a developer to know what to make.
