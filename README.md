@@ -18,3 +18,5 @@ DEMO
 
 
 You can find the reflections and naming convention in the projects Wiki.
+
+Watch open issues to see future devlopment of the module.
