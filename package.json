@@ -2,7 +2,7 @@
   "name": "tra-ma",
   "version": "1.0.0",
   "description": "A module for handling transaction and creating reports.",
-  "main": "index.js",
+  "main": "./dist/src/index.js",
   "repository": {
     "url": "https://github.com/as228gc/1dv610-laboration2",
     "type": "git"
@@ -17,6 +17,7 @@
   "files": [
     "dist"
   ],
+  "types": "./dist/index.d.ts",
   "keywords": [],
   "author": "Alex Söderberg",
   "license": "MIT",
