@@ -1,6 +1,6 @@
 # ReportGenerator
 
-The ReportGenerator class calculates and summarizes an array of transactions. With the calculated data, it can generate a report to summarize the transactions.
+The ReportGenerator class calculates and summarizes an array of transactions. With the calculated data, it is able to generate a report to summarize the transactions.
 
 ### Dependencies
 Classes:
