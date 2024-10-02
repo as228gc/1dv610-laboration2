@@ -1,1 +1,45 @@
+# ReportGenerator
+
+The ReportGenerator class calculates and summarizes an array of transactions. With the calculated data, it can generate a report to summarize the transactions.
+
+### Dependencies
+Classes:
+* TransactionProcessor
+* Report
+
+Enums: 
+* TransactionType
+* IncomeCategory
+* ExpenseCategory 
+
+### Constructor
+
+```
+const report = new Report(
+  1000, // Total income: number
+  500, // Total expenses: number
+  500, // Calculated net balance (income - expenses): number
+  new Date('2024-01-01'), // The earliest occuring date of transactions: Date
+  new Date('2024-12-30'), // The latest occuring date of transactions: Date
+  const map = new Map<IncomeCategory, number>([
+    [IncomeCategory.GIFT, 100]
+  ]), // Map with income by category: Map<IncomeCategory, number>
+  const map = new Map<ExpenseCategory, number>([
+    [ExpenseCategory.FOOD, 100]
+  ]) // Map with expenses by category: Map<ExpenseCategory, number>
+)
+```
+
+## Public interface:
+
+### toString()
+Returns a string representation of the report instance.
+
+```report.toString()```
+
+### toJSON()
+Returns a object in JSON format representing the report instance.
+
+```report.toJSON()```
+
 Return type any for summarizeCategories because I don't know how to return a Object and get access to it's properties otherwise.
