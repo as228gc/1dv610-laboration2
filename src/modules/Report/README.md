@@ -6,20 +6,28 @@ The Report class represents a financial report. It summarizes entered value into
 The class depends on using the enums "IncomeCategory" and "ExpenseCategory".
 
 ### Constructor
+Arguments:
+* Total income - The total income of the transactions
+* Total expenses - The total expenses of the transactions
+* Net balance - The net balance of the transactions
+* First Date - The first occuring date of the transactions
+* Last Date - The last occuring date of the transactions
+* Income Map - A map containing the summarized income for each category
+* Expense Map - A map containing the summarized expenses for each category.
 
 ```
 const report = new Report(
-  1000, // Total income: number
-  500, // Total expenses: number
-  500, // Calculated net balance (income - expenses): number
-  new Date('2024-01-01'), // The earliest occuring date of transactions: Date
-  new Date('2024-12-30'), // The latest occuring date of transactions: Date
+  1000, // Total income
+  500, // Total expenses
+  500, // Net balance (income - expenses)
+  new Date('2024-01-01'), // The earliest occuring date of transactions
+  new Date('2024-12-30'), // The latest occuring date of transactions
   const map = new Map<IncomeCategory, number>([
     [IncomeCategory.GIFT, 100]
-  ]), // Map with income by category: Map<IncomeCategory, number>
+  ]), // Map with income by category
   const map = new Map<ExpenseCategory, number>([
     [ExpenseCategory.FOOD, 100]
-  ]) // Map with expenses by category: Map<ExpenseCategory, number>
+  ]) // Map with expenses by category
 )
 ```
 
