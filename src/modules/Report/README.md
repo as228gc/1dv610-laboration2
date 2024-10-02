@@ -23,7 +23,7 @@ const report = new Report(
 )
 ```
 
-Public interface:
+## Public interface:
 
 ### toString()
 Returns a string representation of the report instance.
