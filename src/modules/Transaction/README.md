@@ -1,19 +1,27 @@
 # Transaction
 
-## To create a transaction
+### Dependencies
 
-* The amount has to be a positive number.
-
-* There are two different types of transactions. Income and expense.
-
-* The entered category has to be of the correct transaction type. For example a transaction created as an expense can not be categorized as income.
-
-## Dependencies
+#### Enums
+* TransactionType
+* ExpenseCategory
+* IncomeCategory
 
 
 ### Constructor
 
+#### Parameters
+* Date - The date of the transaction
+* Amount - The amount of money the transaction involves
+* Transaction type - The type of the transaction. (EXPENSE or INCOME, using the TransactionType enumeration)
+* Category - Income category or Expense category. (Using the enumerations for IncomeCategory or ExpenseCategory)
+
 Throws error if invalid category or amount is entered.
+The entered category has to be of the correct transaction type. For example a transaction created as an expense can not be categorized as income.
+
+* The amount has to be a positive number.
+
+* There are two different types of transactions. INCOME and EXPENSE.
 
 Example
 ```
