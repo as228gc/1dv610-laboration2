@@ -1,8 +1,12 @@
 {
-  "name": "1dv610-laboration2",
+  "name": "tra-ma",
   "version": "1.0.0",
-  "description": "",
+  "description": "A module for handling transaction and creating reports.",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/as228gc/1dv610-laboration2",
+    "type": "git"
+  },
   "scripts": {
     "test": "jest",
     "test:detail": "npx jest --verbose",
@@ -10,9 +14,12 @@
     "build": "npx tsc",
     "start": "node ./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Alex Söderberg",
+  "license": "MIT",
   "dependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
