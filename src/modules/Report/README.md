@@ -7,6 +7,7 @@ The class depends on using the enums "IncomeCategory" and "ExpenseCategory".
 
 ### Constructor
 
+```
 const report = new Report(
   1000, // Total income: number
   500, // Total expenses: number
@@ -20,16 +21,17 @@ const report = new Report(
     [ExpenseCategory.FOOD, 100]
   ]) // Map with expenses by category: Map<ExpenseCategory, number>
 )
+```
 
 Public interface:
 
 ### toString()
 Returns a string representation of the report instance.
 
-report.toString()
+```report.toString()```
 
 ### toJSON()
 Returns a object in JSON format representing the report instance.
 
-report.toJSON()
+```report.toJSON()```
 
