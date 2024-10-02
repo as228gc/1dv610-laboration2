@@ -1,4 +1,5 @@
 export enum IncomeCategory {
   SALARY = 'salary',
-  GIFT = 'gift'
+  GIFT = 'gift',
+  OTHER = 'other'
 }
