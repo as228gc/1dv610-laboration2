@@ -51,7 +51,7 @@ Link to README for each class and enums:
 
 You can find a class diagram in the projects [Wiki](https://github.com/as228gc/1dv610-laboration2/wiki).
 
-My reflections of the code quality: [Link to reflections](/reflektioner.md)
+My reflections of the code quality: [Link to reflections](/reflektion.md)
 
 Watch [Open Issues](https://github.com/as228gc/1dv610-laboration2/issues) to see future development of the module.
 
