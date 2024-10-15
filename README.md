@@ -6,7 +6,7 @@ This module is used to get reports by time and generate a report depending on gi
 Write ```npm i tra-ma``` in console. Verify that the version is 1.0.5 in your package.json.
 
 Importing the module:
-```
+```js
 import {
          Transaction,
          TransactionProcessor,
@@ -20,10 +20,10 @@ import {
 _______________________________________________________________________________________________________
 
 Example:
-```
+```js
 const transaction = new Transaction(
     new Date('2024-09-23'),
-    testValue,
+    100,
     TransactionType.EXPENSE,
     ExpenseCategory.FOOD
 )
