@@ -17,7 +17,7 @@ Takes an argument of a TransactionProcessor.
 
 Example (assuming there is already a declared TransactionProcessor called processor)
 
-```
+```js
 const generator = new ReportGenerator(processor)
 ```
 
@@ -30,7 +30,7 @@ Takes two argument of the type Date, startDate and endDate, which represents the
 The method returns the total income of transactions made between the start date and end date.
 
 Example: (assuming there is already a declared TransactionProcessor called processor)
-```
+```js
 const startDate = new Date('2024-09-10')
 const endDate = new Date('2024-09-30')
 const generator = new ReportGenerator(processor)
@@ -44,7 +44,7 @@ Takes two argument of the type Date, startDate and endDate, which represents the
 The method returns the total expenses of transactions made between the start date and end date.
 
 Example: (assuming there is already a declared TransactionProcessor called processor)
-```
+```js
 const startDate = new Date('2024-09-10')
 const endDate = new Date('2024-09-30')
 const generator = new ReportGenerator(processor)
@@ -58,7 +58,7 @@ Takes two argument of the type Date, startDate and endDate, which represents the
 The method returns the total net balance of transactions made between the start date and end date.
 
 Example: (assuming there is already a declared TransactionProcessor called processor)
-```
+```js
 const startDate = new Date('2024-09-10')
 const endDate = new Date('2024-09-30')
 const generator = new ReportGenerator(processor)
@@ -69,7 +69,7 @@ generator.calculateNetBalance(startDate, endDate) // Returns the net balance of 
 Returns a Report object that covers all transactions from the TransactionProcessor.
 
 Example:
-```
+```js
 const generator = new ReportGenerator(processor)
 generator.generateReport() // Returns a Report instance representing a report of all transactions of the TransactionProcessor
 ```
