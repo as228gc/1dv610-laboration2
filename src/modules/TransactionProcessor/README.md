@@ -20,7 +20,7 @@ Takes one argument
 Takes one argument - the transaction to add to the array
 
 Example (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 transaction = new Transaction(...) // Create new transaction
 processor.appendTransaction(transaction)
 ```
@@ -29,7 +29,7 @@ processor.appendTransaction(transaction)
 Returns a copy of the array of transactions
 
 Example: (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 processor.getTransactions() // Returns the array of transactions
 ```
 
@@ -39,7 +39,7 @@ Arguments:
 * Date - The last date of the time span
 
 Example: (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 const startDate = new Date('2024-01-01')
 const endDate = new Date('2024-12-12')
 processor.filterByTimeSpan() // Returns the transactions with a date that occurs between startDate and endDate
@@ -51,7 +51,7 @@ Arguments:
 Returns an array of transactions matching the given category.
 
 Example: (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 processor.filterByCategory(IncomeCategory.SALARY) // Returns an array of transactions of the category SALARY
 ```
 
@@ -62,7 +62,7 @@ Arguments:
 Returns an array of transactions matching the given type.
 
 Example: (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 processor.filterByType(TransactionType.INCOME) // Returns an array of transactions of the type INCOME.
 ```
 
@@ -70,7 +70,7 @@ processor.filterByType(TransactionType.INCOME) // Returns an array of transactio
 Returns an array of transactions sorted by date. (First to last)
 
 Example (assuming a TransactionProcessor instance named processor is created)
-```
+```js
 processor.sortByDate() // Returns a sorted array of transactions
 ```
 
