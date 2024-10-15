@@ -15,7 +15,7 @@ Arguments:
 * Income Map - A map containing the summarized income for each category
 * Expense Map - A map containing the summarized expenses for each category.
 
-```
+```js
 const report = new Report(
   1000, // Total income
   500, // Total expenses
@@ -36,10 +36,14 @@ const report = new Report(
 ### toString()
 Returns a string representation of the report instance.
 
-```report.toString()```
+```js
+report.toString()
+```
 
 ### toJSON()
 Returns a object in JSON format representing the report instance.
 
-```report.toJSON()```
+```js
+report.toJSON()
+```
 
