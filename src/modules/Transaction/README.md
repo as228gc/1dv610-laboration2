@@ -24,7 +24,7 @@ The entered category has to be of the correct transaction type. For example a tr
 * There are two different types of transactions. INCOME and EXPENSE.
 
 Example
-```
+```js
 const transaction = new Transaction(
   new Date(),
   100,
@@ -39,7 +39,7 @@ const transaction = new Transaction(
 Returns which date the transaction is made.
 
 Example: (assuming a transaction named transaction is already created)
-```
+```js
 transaction.getDate() // Returns the value of the date property of the instance
 ```
 
@@ -47,7 +47,7 @@ transaction.getDate() // Returns the value of the date property of the instance
 Returns the amount of money the transaction involves.
 
 Example: (assuming a transaction named transaction is already created)
-```
+```js
 transaction.getAmount() // Returns the value of the amount property of the instance
 ```
 
@@ -55,7 +55,7 @@ transaction.getAmount() // Returns the value of the amount property of the insta
 Returns the category of the transaction.
 
 Example: (assuming a transaction named transaction is already created)
-```
+```js
 transaction.getCategory() // Returns the category of type ExpenseCategory or IncomeCategory.
 ```
 
@@ -63,6 +63,6 @@ transaction.getCategory() // Returns the category of type ExpenseCategory or Inc
 Returns the transaction type. Etiher EXPENSE or INCOME.
 
 Example: (assuming a transaction named transaction is already created)
-```
+```js
 transaction.getType() // Returns the transaction type.
 ```
