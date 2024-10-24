@@ -96,31 +96,31 @@ export class Report {
     return incomeByCategories
   }
 
-  public getTotalIncome(): number {
+  getTotalIncome(): number {
     return this.#totalIncome
   }
 
-  public getTotalExpenses(): number {
+  getTotalExpenses(): number {
     return this.#totalExpenses
   }
 
-  public getNetBalance(): number {
+  getNetBalance(): number {
     return this.#netBalance
   }
 
-  public getStartDate(): Date {
+  getStartDate(): Date {
     return this.#startDate
   }
 
-  public getEndDate(): Date {
+  getEndDate(): Date {
     return this.#endDate
   }
 
-  public getExpensesByCategory(): Array<any> {
+  getExpensesByCategory(): Array<any> {
     return this.formatExpensesByCategory()
   }
 
-  public getIncomeByCategory(): Array<any> {
+  getIncomeByCategory(): Array<any> {
     return this.formatIncomeByCategory()
   }
 
