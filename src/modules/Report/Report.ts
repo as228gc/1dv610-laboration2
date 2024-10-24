@@ -96,6 +96,34 @@ export class Report {
     return incomeByCategories
   }
 
+  public getTotalIncome(): number {
+    return this.#totalIncome
+  }
+
+  public getTotalExpenses(): number {
+    return this.#totalExpenses
+  }
+
+  public getNetBalance(): number {
+    return this.#netBalance
+  }
+
+  public getStartDate(): Date {
+    return this.#startDate
+  }
+
+  public getEndDate(): Date {
+    return this.#endDate
+  }
+
+  public getExpensesByCategory(): Array<any> {
+    return this.formatExpensesByCategory()
+  }
+
+  public getIncomeByCategory(): Array<any> {
+    return this.formatIncomeByCategory()
+  }
+
   /**
    * Returns a string representation of the instance.
    *
