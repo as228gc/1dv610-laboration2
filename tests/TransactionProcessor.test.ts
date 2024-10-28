@@ -3,6 +3,8 @@ import { Transaction } from "../src/modules/Transaction/Transaction";
 import { TransactionType } from "../src/enums/TransactionType";
 import { ExpenseCategory } from "../src/enums/ExpenseCategory";
 import { IncomeCategory } from "../src/enums/IncomeCategory";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
 
 describe('TransactionProcessor class test', () => {
   // Create a test array of transactions
@@ -11,10 +13,9 @@ describe('TransactionProcessor class test', () => {
   // Create expense transactions in the category FOOD
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new ExpenseTransaction(
         new Date(),
         100,
-        TransactionType.EXPENSE,
         ExpenseCategory.FOOD
       )
     )
@@ -22,29 +23,26 @@ describe('TransactionProcessor class test', () => {
 
   // Create income transactions in the category SALARY
   for (let i = 0; i < 5; i++) {
-    transactions.push(new Transaction(
+    transactions.push(new IncomeTransaction(
       new Date(),
       100,
-      TransactionType.INCOME,
       IncomeCategory.SALARY
     ))
   }
 
   // Create expense transactions in the category OTHER
   for (let i = 0; i < 5; i++) {
-    transactions.push(new Transaction(
+    transactions.push(new ExpenseTransaction(
       new Date(),
       100,
-      TransactionType.EXPENSE,
       ExpenseCategory.OTHER
     ))
   }
 
   for (let i = 0; i < 4; i++) {
-    transactions.push(new Transaction(
+    transactions.push(new IncomeTransaction(
       new Date(),
       100,
-      TransactionType.INCOME,
       IncomeCategory.GIFT
     ))
   }
@@ -61,10 +59,9 @@ describe('TransactionProcessor class test', () => {
 
   it('appends a transaction to the array of transactions', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
-    transactionProcessor.appendTransaction(new Transaction(
+    transactionProcessor.appendTransaction(new IncomeTransaction(
       new Date(),
       100,
-      TransactionType.INCOME,
       IncomeCategory.GIFT
     ))
     expect(transactions)
@@ -112,24 +109,21 @@ describe('TransactionProcessor class test', () => {
   it('sorts an array of transaction by date', () => {
     const transactionsMock: Array<Transaction> = new Array<Transaction>
     // Create three transactions with different dates.
-    const transaction1 = new Transaction(
+    const transaction1 = new ExpenseTransaction(
       new Date('2024-09-23'),
       100,
-      TransactionType.EXPENSE,
       ExpenseCategory.FOOD
     )
 
-    const transaction2 = new Transaction(
+    const transaction2 = new ExpenseTransaction(
       new Date('2024-09-21'),
       100,
-      TransactionType.EXPENSE,
       ExpenseCategory.FOOD
     )
 
-    const transaction3 = new Transaction(
+    const transaction3 = new ExpenseTransaction(
       new Date('2024-09-22'),
       100,
-      TransactionType.EXPENSE,
       ExpenseCategory.FOOD
     )
 

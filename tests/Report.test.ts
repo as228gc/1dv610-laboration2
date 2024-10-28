@@ -5,6 +5,8 @@ import { Report } from "../src/modules/Report/Report";
 import { Transaction } from "../src/modules/Transaction/Transaction";
 import { ReportGenerator } from "../src/modules/ReportGenerator/ReportGenerator";
 import { TransactionProcessor } from "../src/modules/TransactionProcessor/TransactionProcessor";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
 
 describe('Report class tests', () => {
 
@@ -14,10 +16,9 @@ describe('Report class tests', () => {
   // Create expense transactions
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new ExpenseTransaction(
         new Date('2024-09-30'),
         100,
-        TransactionType.EXPENSE,
         ExpenseCategory.FOOD
       )
     )
@@ -26,10 +27,9 @@ describe('Report class tests', () => {
   // Create income transactions
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new IncomeTransaction(
         new Date('2024-09-30'),
         100,
-        TransactionType.INCOME,
         IncomeCategory.SALARY
       )
     )
@@ -37,10 +37,9 @@ describe('Report class tests', () => {
 
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new IncomeTransaction(
         new Date('2024-09-30'),
         200,
-        TransactionType.INCOME,
         IncomeCategory.GIFT
       )
     )
@@ -79,9 +78,9 @@ describe('Report class tests', () => {
 
     Net balance: 1000
 
-    Start date: Mon Sep 30 2024 02:00:00 GMT+0200 (Central European Summer Time)
+    Start date: Mon Sep 30 2024
 
-    End date: Mon Sep 30 2024 02:00:00 GMT+0200 (Central European Summer Time)
+    End date: Mon Sep 30 2024
 
     Expense by category:
       food: 500

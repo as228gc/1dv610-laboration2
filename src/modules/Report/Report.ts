@@ -134,8 +134,8 @@ export class Report {
     Total income: ${this.#totalIncome}\n
     Total expenses: ${this.#totalExpenses}\n
     Net balance: ${this.#netBalance}\n
-    Start date: ${this.#startDate}\n
-    End date: ${this.#endDate}\n
+    Start date: ${this.#startDate.toDateString()}\n
+    End date: ${this.#endDate.toDateString()}\n
     Expense by category:\n`
 
     for (const expense of this.formatExpensesByCategory()) {

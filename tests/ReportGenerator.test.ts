@@ -4,6 +4,8 @@ import { TransactionType } from "../src/enums/TransactionType"
 import { Transaction } from "../src/modules/Transaction/Transaction"
 import { ExpenseCategory } from "../src/enums/ExpenseCategory"
 import { IncomeCategory } from "../src/enums/IncomeCategory"
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction"
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction"
 
 describe('ReportGenerator class test', () => {
 
@@ -16,10 +18,9 @@ describe('ReportGenerator class test', () => {
   // Create expense transactions
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new ExpenseTransaction(
         new Date('2024-09-23'),
         testValue,
-        TransactionType.EXPENSE,
         ExpenseCategory.FOOD
       )
     )
@@ -29,10 +30,9 @@ describe('ReportGenerator class test', () => {
   // Create income transactions
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new IncomeTransaction(
         new Date('2024-09-25'),
         testValue,
-        TransactionType.INCOME,
         IncomeCategory.SALARY
       )
     )
@@ -41,10 +41,9 @@ describe('ReportGenerator class test', () => {
 
   for (let i = 0; i < 5; i++) {
     transactions.push(
-      new Transaction(
+      new ExpenseTransaction(
         new Date('2024-09-24'),
         testValue,
-        TransactionType.EXPENSE,
         ExpenseCategory.FOOD
       )
     )

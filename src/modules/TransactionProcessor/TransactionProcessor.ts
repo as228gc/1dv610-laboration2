@@ -7,6 +7,8 @@
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { IncomeCategory } from "../../enums/IncomeCategory";
 import { TransactionType } from "../../enums/TransactionType";
+import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
+import { IncomeTransaction } from "../Transaction/IncomeTransaction";
 import { Transaction } from "../Transaction/Transaction";
 
 export class TransactionProcessor {
@@ -78,7 +80,9 @@ export class TransactionProcessor {
   filterByType(type: TransactionType): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
-      if (transaction.getType() === type) {
+      if (TransactionType.EXPENSE === type && transaction instanceof ExpenseTransaction) {
+        filtered.push(transaction)
+      } else if (TransactionType.INCOME === type && transaction instanceof IncomeTransaction) {
         filtered.push(transaction)
       }
     }

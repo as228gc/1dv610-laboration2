@@ -9,6 +9,8 @@ import { TransactionType } from "../../enums/TransactionType";
 import { IncomeCategory } from "../../enums/IncomeCategory";
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { Report } from "../Report/Report";
+import { IncomeTransaction } from "../Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
 
 /**
  * Represents a report generator.
@@ -37,7 +39,7 @@ export class ReportGenerator {
 
     // For every transaction of the type INCOME
     for (const transaction of this.#processor.filterByType(TransactionType.INCOME)) {
-      if (transaction.getType() === TransactionType.INCOME
+      if (transaction instanceof IncomeTransaction
         && transactionsInTimeSpan.includes(transaction)) {
         total += transaction.getAmount()
       }
@@ -58,11 +60,9 @@ export class ReportGenerator {
     // For every transaction of the type EXPENSE.
     for (const transaction of this.#processor.filterByType(TransactionType.EXPENSE)) {
       // If the transaction matches the given time span.
-      if (transaction.getType() === TransactionType.EXPENSE 
+      if (transaction instanceof ExpenseTransaction
         && transactionsInTimeSpan.includes(transaction)) {
-
         total += transaction.getAmount()
-
       }
     }
     return total
@@ -118,7 +118,7 @@ export class ReportGenerator {
 
     for (const transaction of transactions) {
       // Check if the transaction is of the type EXPENSE
-      if (transaction.getType() === TransactionType.EXPENSE) {
+      if (transaction instanceof ExpenseTransaction) {
   
         // If the key, value pair already exists in the Map,
         // add the value of the transaciton to correct key value pair
@@ -140,7 +140,7 @@ export class ReportGenerator {
               transaction.getAmount()
             )
         }
-      } else if (transaction.getType() === TransactionType.INCOME) {
+      } else if (transaction instanceof IncomeTransaction) {
         if (incomeMap.has(transaction.getCategory() as IncomeCategory)) {
   
           // Check if the value is currently undefined, if so, set the value to 0
