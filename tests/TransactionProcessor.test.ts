@@ -1,6 +1,5 @@
 import { TransactionProcessor } from "../src/modules/TransactionProcessor/TransactionProcessor";
 import { Transaction } from "../src/modules/Transaction/Transaction";
-import { TransactionType } from "../src/enums/TransactionType";
 import { ExpenseCategory } from "../src/enums/ExpenseCategory";
 import { IncomeCategory } from "../src/enums/IncomeCategory";
 import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
@@ -11,7 +10,7 @@ describe('TransactionProcessor class test', () => {
   const transactions: Array<Transaction> = []
 
   // Create expense transactions in the category FOOD
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new ExpenseTransaction(
         new Date(),
@@ -31,7 +30,7 @@ describe('TransactionProcessor class test', () => {
   }
 
   // Create expense transactions in the category OTHER
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(new ExpenseTransaction(
       new Date(),
       100,
@@ -67,7 +66,7 @@ describe('TransactionProcessor class test', () => {
     expect(transactions)
   })
 
-  it('returns an array of transactions of the expense category FOOD', () => {
+  it('returns an array of transactions of the expense category FOOD', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
@@ -91,7 +90,7 @@ describe('TransactionProcessor class test', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
       transactionProcessor
-      .filterByType(TransactionType.EXPENSE)
+      .filterByType(ExpenseTransaction)
     ).toEqual(
       transactions.slice(0, 5).concat(transactions.slice(10, 15))
     )
@@ -100,14 +99,14 @@ describe('TransactionProcessor class test', () => {
   it('returns an array of transactions of the transaction type INCOME', () => {
     const transactionProcessor = new TransactionProcessor(transactions)
     expect(
-      transactionProcessor.filterByType(TransactionType.INCOME)
+      transactionProcessor.filterByType(IncomeTransaction)
     ).toEqual(
       transactions.slice(5, 10).concat(transactions.slice(15, 20))
     )
   })
 
   it('sorts an array of transaction by date', () => {
-    const transactionsMock: Array<Transaction> = new Array<Transaction>
+    const transactionsMock: Array<Transaction> = new Array<Transaction>
     // Create three transactions with different dates.
     const transaction1 = new ExpenseTransaction(
       new Date('2024-09-23'),
