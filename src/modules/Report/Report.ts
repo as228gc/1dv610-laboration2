@@ -10,14 +10,14 @@ import { IncomeCategory } from "../../enums/IncomeCategory"
 /**
  * Represents a financial report.
  */
-export class Report {
+export class Report {
   #totalIncome: number = 0
-  #totalExpenses: number = 0
+  #totalExpenses: number = 0
   #netBalance :number = 0
   #startDate: Date
   #endDate: Date
   #incomeByCategory: Map<IncomeCategory, number>
-  #expenseByCategory: Map<ExpenseCategory, number>
+  #expenseByCategory: Map<ExpenseCategory, number>
 
   /**
    * Creates an instance of the Report class.
@@ -33,7 +33,7 @@ export class Report {
   constructor(
     totalIncome: number,
     totalExpenses: number,
-    netBalance: number,
+    netBalance: number,
     startDate: Date,
     endDate: Date,
     incomeByCategory: Map<IncomeCategory, number>,
@@ -85,7 +85,7 @@ export class Report {
     }
 
     const incomeByCategories = Array<Summary>()
-    this.#incomeByCategory.forEach((value: number, key: IncomeCategory) => {
+    this.#incomeByCategory.forEach((value: number, key: IncomeCategory) => {
       const summary: Summary = {
         Category: key,
         TotalAmount: value
@@ -138,13 +138,13 @@ export class Report {
     End date: ${this.#endDate.toDateString()}\n
     Expense by category:\n`
 
-    for (const expense of this.formatExpensesByCategory()) {
+    for (const expense of this.formatExpensesByCategory()) {
       summary += `      ${expense.Category}: ${expense.TotalAmount}\n`
     }
 
     summary += `    Income by category:\n`
 
-    for (const income of this.formatIncomeByCategory()) {
+    for (const income of this.formatIncomeByCategory()) {
       summary += `      ${income.Category}: ${income.TotalAmount}\n`
     }
 

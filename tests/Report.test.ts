@@ -1,7 +1,5 @@
 import { ExpenseCategory } from "../src/enums/ExpenseCategory";
 import { IncomeCategory } from "../src/enums/IncomeCategory";
-import { TransactionType } from "../src/enums/TransactionType";
-import { Report } from "../src/modules/Report/Report";
 import { Transaction } from "../src/modules/Transaction/Transaction";
 import { ReportGenerator } from "../src/modules/ReportGenerator/ReportGenerator";
 import { TransactionProcessor } from "../src/modules/TransactionProcessor/TransactionProcessor";
@@ -11,10 +9,10 @@ import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction"
 describe('Report class tests', () => {
 
   // Create transacitons array for expenses and income, to test Map.
-  const transactions: Array<Transaction> = []
+  const transactions: Array<Transaction> = []
 
   // Create expense transactions
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new ExpenseTransaction(
         new Date('2024-09-30'),
@@ -25,7 +23,7 @@ describe('Report class tests', () => {
   }
 
   // Create income transactions
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new IncomeTransaction(
         new Date('2024-09-30'),
@@ -35,7 +33,7 @@ describe('Report class tests', () => {
     )
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new IncomeTransaction(
         new Date('2024-09-30'),
