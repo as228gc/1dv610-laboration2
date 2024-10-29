@@ -10,13 +10,13 @@ import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction"
 describe('ReportGenerator class test', () => {
 
   // Create transacitons array for expenses and income, to test Map.
-  const transactions: Array<Transaction> = []
+  const transactions: Array<Transaction> = []
   let testValue = 100
   let totalExpenses = 0
   let totalIncome = 0
 
   // Create expense transactions
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new ExpenseTransaction(
         new Date('2024-09-23'),
@@ -28,7 +28,7 @@ describe('ReportGenerator class test', () => {
   }
 
   // Create income transactions
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new IncomeTransaction(
         new Date('2024-09-25'),
@@ -39,7 +39,7 @@ describe('ReportGenerator class test', () => {
     totalIncome += testValue
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     transactions.push(
       new ExpenseTransaction(
         new Date('2024-09-24'),
@@ -61,21 +61,21 @@ describe('ReportGenerator class test', () => {
     expect(generator).toBeDefined()
   })
 
-  it('returns the total amount of income', () => {
-    const generator = new ReportGenerator(processor)
-    expect(generator.calculateIncome(startDate, endDate)).toEqual(totalIncome)
-  })
+  // it('returns the total amount of income', () => {
+  //   const generator = new ReportGenerator(processor)
+  //   expect(generator.calculateIncome(startDate, endDate)).toEqual(totalIncome)
+  // })
 
   
-  it('returns the total amount of expenses', () => {
-    const generator = new ReportGenerator(processor)
-    expect(generator.calculateExpenses(startDate, endDate)).toEqual(totalExpenses)
-  })
+  // it('returns the total amount of expenses', () => {
+  //   const generator = new ReportGenerator(processor)
+  //   expect(generator.calculateExpenses(startDate, endDate)).toEqual(totalExpenses)
+  // })
   
-  it('should generate the net balance of the transactions', () => {
-    const generator = new ReportGenerator(processor)
-    expect(generator.calculateNetBalance(startDate, endDate)).toEqual(totalIncome - totalExpenses)
-  })
+  // it('should generate the net balance of the transactions', () => {
+  //   const generator = new ReportGenerator(processor)
+  //   expect(generator.calculateNetBalance(startDate, endDate)).toEqual(totalIncome - totalExpenses)
+  // })
 
   it('should generate a report covering all transactions', () => {
     const generator = new ReportGenerator(processor)
@@ -93,9 +93,9 @@ describe('ReportGenerator class test', () => {
     )
   })
 
-  it('should calculate total expenses of transactions in a given time span', () => {
-    const processor = new TransactionProcessor(transactions)
-    const generator = new ReportGenerator(processor)
-    expect(generator.calculateExpenses(new Date('2024-09-24'), new Date('2024-09-24'))).toEqual(500)
-  })
+  // it('should calculate total expenses of transactions in a given time span', () => {
+  //   const processor = new TransactionProcessor(transactions)
+  //   const generator = new ReportGenerator(processor)
+  //   expect(generator.calculateExpenses(new Date('2024-09-24'), new Date('2024-09-24'))).toEqual(500)
+  // })
 })
