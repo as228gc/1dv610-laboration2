@@ -1,7 +1,7 @@
 /**
  * @author Alex Söderberg <as228gc@student.lnu.se>
  * @module TransactionProcessor
- * @version 0.1
+ * @version 1.1
  */
 
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
@@ -11,10 +11,10 @@ import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
 import { IncomeTransaction } from "../Transaction/IncomeTransaction";
 import { Transaction } from "../Transaction/Transaction";
 
-export class TransactionProcessor {
+export class TransactionProcessor {
   #transactions: Array<Transaction>
 
-  constructor(transactions: Array<Transaction>) {
+  constructor(transactions: Array<Transaction>) {
     this.#transactions = [...transactions]
   }
 
@@ -39,15 +39,15 @@ export class TransactionProcessor {
   /**
    * Returns an array of transactions that occurs within the given time span
    *
-   * @param { Date } startDate - The date to start from
+   * @param { Date } startDate - The date to start from
    * @param { Date } endDate - The date to stop at
    * @returns { Array<Transaction> } An array of the transactions within the time span
    */
-  filterByTimeSpan(startDate: Date, endDate: Date): Array<Transaction> {
+  filterByTimeSpan(startDate: Date, endDate: Date): Array<Transaction> {
     const transactions = new Array<Transaction>()
 
-    for (const transaction of this.#transactions) {
-      if (transaction.getDate() >= startDate && transaction.getDate() <= endDate) {
+    for (const transaction of this.#transactions) {
+      if (transaction.getDate() >= startDate && transaction.getDate() <= endDate) {
         transactions.push(transaction)
       }
     }
@@ -64,7 +64,7 @@ export class TransactionProcessor {
   filterByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
     const filtered: Array<Transaction> = []
     for (const transaction of this.#transactions) {
-      if (transaction.getCategory() === category) {
+      if (transaction.getCategory() === category) {
         filtered.push(transaction)
       }
     }
@@ -77,10 +77,10 @@ export class TransactionProcessor {
    * @param { TransactionType } type - The transaction type to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  filterByType(type: TransactionType): Array<Transaction> {
+  filterByType(type: TransactionType): Array<Transaction> {
     const filtered: Array<Transaction> = []
-    for (const transaction of this.#transactions) {
-      if (TransactionType.EXPENSE === type && transaction instanceof ExpenseTransaction) {
+    for (const transaction of this.#transactions) {
+      if (TransactionType.EXPENSE === type && transaction instanceof ExpenseTransaction) {
         filtered.push(transaction)
       } else if (TransactionType.INCOME === type && transaction instanceof IncomeTransaction) {
         filtered.push(transaction)
@@ -94,7 +94,7 @@ export class TransactionProcessor {
    *
    * @returns { Array<Transaction> } An array of transactions sorted by date
    */
-  sortByDate(): Array<Transaction> {
-    return this.#transactions.sort((a, b) => a.getDate().getTime() - b.getDate().getTime())
+  sortByDate(): Array<Transaction> {
+    return this.#transactions.sort((a, b) => a.getDate().getTime() - b.getDate().getTime())
   }
 }
