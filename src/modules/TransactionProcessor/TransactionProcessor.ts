@@ -6,7 +6,6 @@
 
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { IncomeCategory } from "../../enums/IncomeCategory";
-import { TransactionType } from "../../enums/TransactionType";
 import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
 import { IncomeTransaction } from "../Transaction/IncomeTransaction";
 import { Transaction } from "../Transaction/Transaction";
@@ -44,15 +43,9 @@ export class TransactionProcessor {
    * @returns { Array<Transaction> } An array of the transactions within the time span
    */
   filterByTimeSpan(startDate: Date, endDate: Date): Array<Transaction> {
-    const transactions = new Array<Transaction>()
-
-    for (const transaction of this.#transactions) {
-      if (transaction.getDate() >= startDate && transaction.getDate() <= endDate) {
-        transactions.push(transaction)
-      }
-    }
-
-    return [...transactions]
+    return this.#transactions.filter((transaction) => {
+      return (transaction.getDate() >= startDate) && (transaction.getDate() <= endDate)
+    })
   }
 
   /**
@@ -62,13 +55,7 @@ export class TransactionProcessor {
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
   filterByCategory(category: ExpenseCategory | IncomeCategory): Array<Transaction> {
-    const filtered: Array<Transaction> = []
-    for (const transaction of this.#transactions) {
-      if (transaction.getCategory() === category) {
-        filtered.push(transaction)
-      }
-    }
-    return filtered
+    return this.#transactions.filter(transaction => transaction.getCategory() === category)
   }
 
   /**
@@ -77,16 +64,8 @@ export class TransactionProcessor {
    * @param { TransactionType } type - The transaction type to be selected out of the transactions.
    * @returns { Array<Transaction> } - The filtered array of transactions.
    */
-  filterByType(type: TransactionType): Array<Transaction> {
-    const filtered: Array<Transaction> = []
-    for (const transaction of this.#transactions) {
-      if (TransactionType.EXPENSE === type && transaction instanceof ExpenseTransaction) {
-        filtered.push(transaction)
-      } else if (TransactionType.INCOME === type && transaction instanceof IncomeTransaction) {
-        filtered.push(transaction)
-      }
-    }
-    return filtered
+  filterByType(type: typeof IncomeTransaction | typeof ExpenseTransaction): Array<Transaction> {
+    return this.#transactions.filter(transaction => transaction instanceof type)
   }
 
   /**
