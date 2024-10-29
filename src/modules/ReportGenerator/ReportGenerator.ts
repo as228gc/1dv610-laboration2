@@ -5,7 +5,6 @@
  */
 
 import { TransactionProcessor } from "../TransactionProcessor/TransactionProcessor";
-import { TransactionType } from "../../enums/TransactionType";
 import { IncomeCategory } from "../../enums/IncomeCategory";
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { Report } from "../Report/Report";
@@ -15,15 +14,15 @@ import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
 /**
  * Represents a report generator.
  */
-export class ReportGenerator {
-  #processor: TransactionProcessor
+export class ReportGenerator {
+  #processor: TransactionProcessor
 
   /**
    * Creates a ReportGenerator instance.
    *
    * @param { TransactionProcessor } processor - A transaction processor for handling transaction to be included in the report.
    */
-  constructor(processor: TransactionProcessor) {
+  constructor(processor: TransactionProcessor) {
     this.#processor = processor
   }
 
@@ -32,13 +31,13 @@ export class ReportGenerator {
    *
    * @returns { number } - The total income from the array of transactions.
    */
-  calculateIncome(startDate: Date, endDate: Date): number {
+  calculateIncome(startDate: Date, endDate: Date): number {
     let total: number = 0
 
     const transactionsInTimeSpan = this.#processor.filterByTimeSpan(startDate, endDate)
 
     // For every transaction of the type INCOME
-    for (const transaction of this.#processor.filterByType(TransactionType.INCOME)) {
+    for (const transaction of this.#processor.filterByType(IncomeTransaction)) {
       if (transaction instanceof IncomeTransaction
         && transactionsInTimeSpan.includes(transaction)) {
         total += transaction.getAmount()
@@ -52,13 +51,13 @@ export class ReportGenerator {
    *
    * @returns {number} - The total expenses from the array of transactions.
    */
-  calculateExpenses(startDate: Date, endDate: Date): number {
+  calculateExpenses(startDate: Date, endDate: Date): number {
     let total: number = 0
 
     const transactionsInTimeSpan = this.#processor.filterByTimeSpan(startDate, endDate)
 
     // For every transaction of the type EXPENSE.
-    for (const transaction of this.#processor.filterByType(TransactionType.EXPENSE)) {
+    for (const transaction of this.#processor.filterByType(ExpenseTransaction)) {
       // If the transaction matches the given time span.
       if (transaction instanceof ExpenseTransaction
         && transactionsInTimeSpan.includes(transaction)) {
@@ -74,20 +73,20 @@ export class ReportGenerator {
    *
    * @returns { number } The net balance.
    */
-  calculateNetBalance(startDate: Date, endDate: Date): number {
+  calculateNetBalance(startDate: Date, endDate: Date): number {
     return this.calculateIncome(startDate, endDate) - this.calculateExpenses(startDate, endDate) 
   }
 
   /**
    * Generates a report that covers all transactions.
    *
-   * @returns { Report } A report containing a summary of all transactions.
+   * @returns { Report } A report containing a summary of all transactions.
    */
   generateReport(): Report {
     // Get the transactions with the earliest and latest date
-    const firstDate: Date = this.#processor.sortByDate()[0].getDate()
+    const firstDate: Date = this.#processor.sortByDate()[0].getDate()
 
-    const lastDate: Date = this.#processor
+    const lastDate: Date = this.#processor
       .sortByDate()[this.#processor.getTransactions().length - 1]
       .getDate()
 
@@ -114,11 +113,11 @@ export class ReportGenerator {
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
     const transactions = this.#processor.getTransactions()
 
-    for (const transaction of transactions) {
+    for (const transaction of transactions) {
       const category = transaction.getCategory()
       const amount = transaction.getAmount()
 
-      if (transaction instanceof ExpenseTransaction) {
+      if (transaction instanceof ExpenseTransaction) {
         this.addAmountToCategory(expensesMap, amount, category)
       } else if (transaction instanceof IncomeTransaction) {
         this.addAmountToCategory(incomeMap, amount, category)
@@ -126,7 +125,7 @@ export class ReportGenerator {
     }
 
     const summary = {
-      "incomeByCategory": incomeMap,
+      "incomeByCategory": incomeMap,
       "expensesByCategory": expensesMap
     }
 
@@ -137,14 +136,14 @@ export class ReportGenerator {
     map: Map<IncomeCategory | ExpenseCategory, number>,
     amount: number,
     category: IncomeCategory | ExpenseCategory) {
-      if (map.has(category)) {
+      if (map.has(category)) {
         const currentValue = this.findCategoryCurrentValue(map, category)
         map
           .set(
             category,
             currentValue + amount
           )
-      } else {
+      } else {
         map
           .set(
             category,
