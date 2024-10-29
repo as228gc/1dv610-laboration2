@@ -110,55 +110,18 @@ export class ReportGenerator {
    * @returns { any } An object containing the maps of income and expenses by category.
    */
   private summarizeCategories(): any  {
-    const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
+    const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
-  
-    // Store transactions in variable for reducing amount of code
     const transactions = this.#processor.getTransactions()
 
     for (const transaction of transactions) {
-      // Check if the transaction is of the type EXPENSE
+      const category = transaction.getCategory()
+      const amount = transaction.getAmount()
+
       if (transaction instanceof ExpenseTransaction) {
-  
-        // If the key, value pair already exists in the Map,
-        // add the value of the transaciton to correct key value pair
-        if (expensesMap.has(transaction.getCategory() as ExpenseCategory)) {
-  
-          // Check if the value is currently undefined, if so, set the value to 0
-          const currentValue = expensesMap.get(transaction.getCategory() as ExpenseCategory) || 0
-          expensesMap
-            .set(
-              transaction.getCategory() as ExpenseCategory,
-  
-              // Add the value of the transaction to the category.
-              currentValue + transaction.getAmount()
-            )
-        } else {
-          expensesMap
-            .set(
-              transaction.getCategory() as ExpenseCategory,
-              transaction.getAmount()
-            )
-        }
+        this.addAmountToCategory(expensesMap, amount, category)
       } else if (transaction instanceof IncomeTransaction) {
-        if (incomeMap.has(transaction.getCategory() as IncomeCategory)) {
-  
-          // Check if the value is currently undefined, if so, set the value to 0
-          const currentValue = incomeMap.get(transaction.getCategory() as IncomeCategory) || 0
-          incomeMap
-            .set(
-              transaction.getCategory() as IncomeCategory,
-              
-              // Add the value of the transaction to the category.
-              currentValue + transaction.getAmount()
-            )
-        } else {
-          incomeMap
-            .set(
-              transaction.getCategory() as IncomeCategory,
-              transaction.getAmount()
-            )
-        }
+        this.addAmountToCategory(incomeMap, amount, category)
       }
     }
 
@@ -168,5 +131,49 @@ export class ReportGenerator {
     }
 
     return summary
+  }
+
+  private addAmountToCategory(
+    map: Map<IncomeCategory | ExpenseCategory, number>,
+    amount: number,
+    category: IncomeCategory | ExpenseCategory) {
+      if (map.has(category)) {
+        const currentValue = this.findCategoryCurrentValue(map, category)
+        map
+          .set(
+            category,
+            currentValue + amount
+          )
+      } else {
+        map
+          .set(
+            category,
+            amount
+          )
+      }
+  }
+
+  /**
+   * Returns a number which represents the current value for the given category.
+   *
+   * @param map A map of categories and values
+   * @param category The category to find the value for
+   * @returns A number representing the current value of the category.
+   */
+  private findCategoryCurrentValue (map: Map<IncomeCategory | ExpenseCategory, number>, category: IncomeCategory | ExpenseCategory): number  {
+    let currentValue: number
+    try {
+      if (this.isUndefined(map.get(category))){
+        throw new Error('Value of category not found.')
+      }
+      currentValue = map.get(category) as number
+    } catch (error) {
+      currentValue = 0
+    }
+    return currentValue
+  }
+
+  private isUndefined (value: any) {
+    return value === undefined
   }
 }
