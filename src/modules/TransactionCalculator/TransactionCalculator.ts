@@ -50,7 +50,7 @@ export class TransactionCalculator {
    * @param endDate The last date of the time span
    * @returns The net balance of the transaction made in the time span
    */
-  public calculateNetBalanceByTimeSpan(startDate: Date, endDate: Date): number {
+  public calculateNetBalanceInTimeSpan(startDate: Date, endDate: Date): number {
     const totalIncome = this.calculateIncomeInTimeSpan(startDate, endDate)
     const totalExpenses = this.calculateExpensesInTimeSpan(startDate, endDate)
     return totalIncome - totalExpenses
