@@ -2,27 +2,26 @@ import { ExpenseCategory } from "../../enums/ExpenseCategory"
 import { IncomeCategory } from "../../enums/IncomeCategory"
 import { ExpenseTransaction } from "../Transaction/ExpenseTransaction"
 import { IncomeTransaction } from "../Transaction/IncomeTransaction"
-import { TransactionProcessor } from "../TransactionProcessor/TransactionProcessor"
+import { Transaction } from "../Transaction/Transaction"
 import { SummaryDTO } from "./SummaryDTO"
 
 export class CategorySummarizer {
-  private processor: TransactionProcessor
+  private transactions: Array<Transaction>
 
-  constructor(processor: TransactionProcessor) {
-    this.processor = processor
+  constructor(transactions: Array<Transaction>) {
+    this.transactions = transactions
   }
 
   /**
    * Returns an object containing the total amount of expenses and income for each category.
    *
-   * @returns { any } An object containing the maps of income and expenses by category.
+   * @returns { SummaryDTO } An object containing the maps of income and expenses by category.
    */
   public summarizeCategories(): SummaryDTO  {
     const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
-    const transactions = this.processor.getTransactions()
 
-    for (const transaction of transactions) {
+    for (const transaction of this.transactions) {
       const category = transaction.getCategory()
       const amount = transaction.getAmount()
 
