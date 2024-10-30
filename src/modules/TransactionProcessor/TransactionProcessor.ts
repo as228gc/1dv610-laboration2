@@ -35,6 +35,10 @@ export class TransactionProcessor {
     return [...this.#transactions]
   }
 
+  getNumberOfTransactions(): number {
+    return this.#transactions.length
+  }
+
   /**
    * Returns an array of transactions that occurs within the given time span
    *
