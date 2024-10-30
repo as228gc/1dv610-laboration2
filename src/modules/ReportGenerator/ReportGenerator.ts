@@ -15,8 +15,7 @@ import { CategorySummarizer } from "../CategorySummarizer/CategorySummarizer";
 export class ReportGenerator {
   private calculator: TransactionCalculator
   private summarizer: CategorySummarizer
-  private firstDate: Date
-  private lastDate: Date
+  private processor: TransactionProcessor
 
   /**
    * Creates a ReportGenerator instance.
@@ -25,11 +24,8 @@ export class ReportGenerator {
    */
   constructor(processor: TransactionProcessor) {
     this.calculator = new TransactionCalculator(processor)
-    this.summarizer = new CategorySummarizer(processor.getTransactions())
-    this.firstDate = processor.sortByDate()[0].getDate()
-    this.lastDate = processor
-      .sortByDate()[processor.getNumberOfTransactions() - 1]
-      .getDate()
+    this.summarizer = new CategorySummarizer()
+    this.processor = processor
   }
 
   /**
@@ -38,17 +34,41 @@ export class ReportGenerator {
    * @returns { Report } A report containing a summary of all transactions.
    */
   generateReport(): Report {
-    // Get the transactions with the earliest and latest date
-    const report: Report = new Report(
+    const firstDate = (
+      this.processor
+        .sortByDate()[0]
+        .getDate()
+    )
+
+    const lastDate = (
+      this.processor
+        .sortByDate()[this.processor.getNumberOfTransactions() - 1]
+        .getDate()
+    )
+
+    const transactions = this.processor.getTransactions()
+
+    return new Report(
       this.calculator.calculateTotalIncome(),
       this.calculator.calculateTotalExpenses(),
       this.calculator.calculateTotalNetBalance(),
-      this.firstDate,
-      this.lastDate,
-      this.summarizer.summarizeCategories().incomeByCategory,
-      this.summarizer.summarizeCategories().expenseByCategory
+      firstDate,
+      lastDate,
+      this.summarizer.summarizeCategories(transactions).incomeByCategory,
+      this.summarizer.summarizeCategories(transactions).expenseByCategory
     )
+  }
 
-    return report
+  generateReportByTimeSpan(startDate: Date, endDate: Date) {
+    const transactions = this.processor.filterByTimeSpan(startDate, endDate)
+    return new Report(
+      this.calculator.calculateIncomeInTimeSpan(startDate, endDate),
+      this.calculator.calculateExpensesInTimeSpan(startDate, endDate),
+      this.calculator.calculateNetBalanceInTimeSpan(startDate, endDate),
+      startDate,
+      endDate,
+      this.summarizer.summarizeCategories(transactions).incomeByCategory,
+      this.summarizer.summarizeCategories(transactions).expenseByCategory
+    )
   }
 }
