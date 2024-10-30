@@ -6,22 +6,16 @@ import { Transaction } from "../Transaction/Transaction"
 import { SummaryDTO } from "./SummaryDTO"
 
 export class CategorySummarizer {
-  private transactions: Array<Transaction>
-
-  constructor(transactions: Array<Transaction>) {
-    this.transactions = transactions
-  }
-
   /**
    * Returns an object containing the total amount of expenses and income for each category.
    *
    * @returns { SummaryDTO } An object containing the maps of income and expenses by category.
    */
-  public summarizeCategories(): SummaryDTO  {
+  public summarizeCategories(transactions: Array<Transaction>): SummaryDTO  {
     const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
 
-    for (const transaction of this.transactions) {
+    for (const transaction of transactions) {
       const category = transaction.getCategory()
       const amount = transaction.getAmount()
 
@@ -46,17 +40,9 @@ export class CategorySummarizer {
     category: IncomeCategory | ExpenseCategory) {
       if (map.has(category)) {
         const currentValue = this.findCategoryCurrentValue(map, category)
-        map
-          .set(
-            category,
-            currentValue + amount
-          )
+        map.set(category, currentValue + amount)
       } else {
-        map
-          .set(
-            category,
-            amount
-          )
+        map.set(category, amount)
       }
   }
 
