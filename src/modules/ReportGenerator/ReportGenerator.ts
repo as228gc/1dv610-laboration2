@@ -15,7 +15,8 @@ import { CategorySummarizer } from "../CategorySummarizer/CategorySummarizer";
 export class ReportGenerator {
   private calculator: TransactionCalculator
   private summarizer: CategorySummarizer
-  private processor: TransactionProcessor
+  private firstDate: Date
+  private lastDate: Date
 
   /**
    * Creates a ReportGenerator instance.
@@ -24,8 +25,11 @@ export class ReportGenerator {
    */
   constructor(processor: TransactionProcessor) {
     this.calculator = new TransactionCalculator(processor)
-    this.summarizer = new CategorySummarizer(processor)
-    this.processor = processor
+    this.summarizer = new CategorySummarizer(processor.getTransactions())
+    this.firstDate = processor.sortByDate()[0].getDate()
+    this.lastDate = processor
+      .sortByDate()[processor.getNumberOfTransactions() - 1]
+      .getDate()
   }
 
   /**
@@ -35,22 +39,12 @@ export class ReportGenerator {
    */
   generateReport(): Report {
     // Get the transactions with the earliest and latest date
-    const firstDate: Date = 
-      this.processor
-        .sortByDate()[0]
-        .getDate()
-
-    const lastDate: Date = 
-      this.processor
-        .sortByDate()[this.processor.getTransactions().length - 1]
-        .getDate()
-
     const report: Report = new Report(
       this.calculator.calculateTotalIncome(),
       this.calculator.calculateTotalExpenses(),
       this.calculator.calculateTotalNetBalance(),
-      firstDate,
-      lastDate,
+      this.firstDate,
+      this.lastDate,
       this.summarizer.summarizeCategories().incomeByCategory,
       this.summarizer.summarizeCategories().expenseByCategory
     )
