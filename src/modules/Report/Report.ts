@@ -6,6 +6,8 @@
 
 import { ExpenseCategory } from "../../enums/ExpenseCategory"
 import { IncomeCategory } from "../../enums/IncomeCategory"
+import { CategorySummaryDTO } from "../../lib/CategorySummaryDTO"
+import { SummaryDTO } from "../../lib/SummaryDTO"
 
 /**
  * Represents a financial report.
@@ -13,7 +15,7 @@ import { IncomeCategory } from "../../enums/IncomeCategory"
 export class Report {
   #totalIncome: number = 0
   #totalExpenses: number = 0
-  #netBalance :number = 0
+  #netBalance: number = 0
   #startDate: Date
   #endDate: Date
   #incomeByCategory: Map<IncomeCategory, number>
@@ -27,8 +29,7 @@ export class Report {
    * @param { number } netBalance - The calculated net balance.
    * @param { Date } startDate - The date of the first transaction.
    * @param { Date } endDate - The date of the last transaction.
-   * @param { Map<IncomeCategory, number> } incomeByCategory - The total income for each income category.
-   * @param { Map<ExpenseCategory, number> } expenseByCategory - The total expenses for each expense category.
+   * @param { SummaryDTO } summary - A DTO containing maps of expenses and income by category.
    */
   constructor(
     totalIncome: number,
@@ -36,35 +37,29 @@ export class Report {
     netBalance: number,
     startDate: Date,
     endDate: Date,
-    incomeByCategory: Map<IncomeCategory, number>,
-    expenseByCategory: Map<ExpenseCategory, number>
+    summary: SummaryDTO
   ) {
     this.#totalIncome = totalIncome
     this.#totalExpenses = totalExpenses
     this.#netBalance = netBalance
     this.#startDate = startDate
     this.#endDate = endDate
-    this.#incomeByCategory = incomeByCategory
-    this.#expenseByCategory = expenseByCategory
+    this.#incomeByCategory = summary.incomeByCategory
+    this.#expenseByCategory = summary.expenseByCategory
   }
 
   /**
    * Returns an array of objects containing the same information as the map.
    * Making the object's keys and values readable when accessing the object.
    *
-   * @returns { Array<any> } An array of objects containing category and total amount.
+   * @returns { Array<CategorySummaryDTO> } An array of DTO's containing category and total amount.
    */
-  private formatExpensesByCategory(): Array<any> {
-    type Summary = {
-      Category: ExpenseCategory,
-      TotalAmount: number
-    }
-
-    const expensesCategories = Array<Summary>()
+  private formatExpensesByCategory(): Array<CategorySummaryDTO> {
+    const expensesCategories = Array<CategorySummaryDTO>()
     this.#expenseByCategory.forEach((value: number, key: ExpenseCategory) => {
-      const summary: Summary = {
-        Category: key,
-        TotalAmount: value
+      const summary: CategorySummaryDTO = {
+        category: key,
+        totalAmount: value
       }
       expensesCategories.push(summary)
     })
@@ -76,19 +71,14 @@ export class Report {
    * Returns an array of objects containing the same information as the map.
    * Making the object's keys and values readable when accessing the object.
    *
-   * @returns { Array<any> } An array of objects containing category and total amount.
+   * @returns { Array<CategorySummaryDTO> } An array of DTO's containing category and total amount.
    */
-  private formatIncomeByCategory(): Array<any> {
-    type Summary = {
-      Category: IncomeCategory,
-      TotalAmount: number
-    }
-
-    const incomeByCategories = Array<Summary>()
+  private formatIncomeByCategory(): Array<CategorySummaryDTO> {
+    const incomeByCategories = Array<CategorySummaryDTO>()
     this.#incomeByCategory.forEach((value: number, key: IncomeCategory) => {
-      const summary: Summary = {
-        Category: key,
-        TotalAmount: value
+      const summary: CategorySummaryDTO = {
+        category: key,
+        totalAmount: value
       }
       incomeByCategories.push(summary)
     })
@@ -139,13 +129,13 @@ export class Report {
     Expense by category:\n`
 
     for (const expense of this.formatExpensesByCategory()) {
-      summary += `      ${expense.Category}: ${expense.TotalAmount}\n`
+      summary += `      ${expense.category}: ${expense.totalAmount}\n`
     }
 
     summary += `    Income by category:\n`
 
     for (const income of this.formatIncomeByCategory()) {
-      summary += `      ${income.Category}: ${income.TotalAmount}\n`
+      summary += `      ${income.category}: ${income.totalAmount}\n`
     }
 
     return summary

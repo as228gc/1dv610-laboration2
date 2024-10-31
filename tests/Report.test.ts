@@ -60,8 +60,8 @@ describe('Report class tests', () => {
         netBalance: 1000,
         startDate: new Date('2024-09-30T00:00:00.000Z'),
         endDate: new Date('2024-09-30T00:00:00.000Z'),
-        expenseByCategory: [ { Category: 'food', TotalAmount: 500 } ],
-        incomeByCategory: [ { Category: 'salary', TotalAmount: 500 }, { Category: 'gift', TotalAmount: 1000 } ]
+        expenseByCategory: [ { category: 'food', totalAmount: 500 } ],
+        incomeByCategory: [ { category: 'salary', totalAmount: 500 }, { category: 'gift', totalAmount: 1000 } ]
       }
     )
   })

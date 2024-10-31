@@ -3,7 +3,7 @@ import { IncomeCategory } from "../../enums/IncomeCategory"
 import { ExpenseTransaction } from "../Transaction/ExpenseTransaction"
 import { IncomeTransaction } from "../Transaction/IncomeTransaction"
 import { Transaction } from "../Transaction/Transaction"
-import { SummaryDTO } from "./SummaryDTO"
+import { SummaryDTO } from "../../lib/SummaryDTO"
 
 export class CategorySummarizer {
   /**

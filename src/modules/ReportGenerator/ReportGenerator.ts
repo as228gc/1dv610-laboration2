@@ -54,8 +54,7 @@ export class ReportGenerator {
       this.calculator.calculateTotalNetBalance(),
       firstDate,
       lastDate,
-      this.summarizer.summarizeCategories(transactions).incomeByCategory,
-      this.summarizer.summarizeCategories(transactions).expenseByCategory
+      this.summarizer.summarizeCategories(transactions)
     )
   }
 
@@ -67,8 +66,7 @@ export class ReportGenerator {
       this.calculator.calculateNetBalanceInTimeSpan(startDate, endDate),
       startDate,
       endDate,
-      this.summarizer.summarizeCategories(transactions).incomeByCategory,
-      this.summarizer.summarizeCategories(transactions).expenseByCategory
+      this.summarizer.summarizeCategories(transactions)
     )
   }
 }

@@ -87,8 +87,8 @@ describe('ReportGenerator class test', () => {
         netBalance: testValue * -5,
         startDate: new Date('2024-09-23T00:00:00.000Z'),
         endDate: new Date('2024-09-25T00:00:00.000Z'),
-        expenseByCategory: [ { Category: 'food', TotalAmount: 1000 } ],
-        incomeByCategory: [ { Category: 'salary', TotalAmount: 500 } ]
+        expenseByCategory: [ { category: 'food', totalAmount: 1000 } ],
+        incomeByCategory: [ { category: 'salary', totalAmount: 500 } ]
       }
     )
   })
