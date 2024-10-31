@@ -45,7 +45,7 @@ for (let i = 0; i < 5; i++) {
 for (let i = 0; i < 5; i++) {
   transactions.push(
     new IncomeTransaction(
-      new Date('2024-09-25'),
+      new Date('2024-09-26'),
       testValue,
       IncomeCategory.GIFT
     )
@@ -56,11 +56,17 @@ for (let i = 0; i < 5; i++) {
 type TransactionMock = {
   transactions: Array<Transaction>,
   totalIncome: number,
-  totalExpenses: number
+  totalExpenses: number,
+  netBalance: number,
+  startDate: Date
+  endDate: Date
 }
 
 export const mock: TransactionMock = {
   transactions: transactions,
   totalIncome: totalIncome,
-  totalExpenses: totalExpenses
+  totalExpenses: totalExpenses,
+  netBalance: totalIncome - totalExpenses,
+  startDate: new Date('2024-09-23'),
+  endDate: new Date('2024-09-26')
 }
