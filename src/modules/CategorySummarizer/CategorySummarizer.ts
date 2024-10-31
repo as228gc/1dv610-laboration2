@@ -11,7 +11,7 @@ export class CategorySummarizer {
    *
    * @returns { SummaryDTO } An object containing the maps of income and expenses by category.
    */
-  public summarizeCategories(transactions: Array<Transaction>): SummaryDTO  {
+  public summarizeCategories(transactions: Array<Transaction>): SummaryDTO {
     const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
 
@@ -38,12 +38,12 @@ export class CategorySummarizer {
     map: Map<IncomeCategory | ExpenseCategory, number>,
     amount: number,
     category: IncomeCategory | ExpenseCategory) {
-      if (map.has(category)) {
-        const currentValue = this.findCategoryCurrentValue(map, category)
-        map.set(category, currentValue + amount)
-      } else {
-        map.set(category, amount)
-      }
+    if (map.has(category)) {
+      const currentValue = this.findCategoryCurrentValue(map, category)
+      map.set(category, currentValue + amount)
+    } else {
+      map.set(category, amount)
+    }
   }
 
   /**
@@ -53,10 +53,10 @@ export class CategorySummarizer {
    * @param category The category to find the value for
    * @returns A number representing the current value of the category.
    */
-  private findCategoryCurrentValue (map: Map<IncomeCategory | ExpenseCategory, number>, category: IncomeCategory | ExpenseCategory): number  {
+  private findCategoryCurrentValue(map: Map<IncomeCategory | ExpenseCategory, number>, category: IncomeCategory | ExpenseCategory): number {
     let currentValue: number
     try {
-      if (this.isUndefined(map.get(category))){
+      if (this.isUndefined(map.get(category))) {
         throw new Error('Value of category not found.')
       }
       currentValue = map.get(category) as number
@@ -66,7 +66,7 @@ export class CategorySummarizer {
     return currentValue
   }
 
-  private isUndefined (value: any) {
+  private isUndefined(value: any) {
     return value === undefined
   }
 }
