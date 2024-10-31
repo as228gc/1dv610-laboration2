@@ -106,11 +106,11 @@ export class Report {
     return this.#endDate
   }
 
-  getExpensesByCategory(): Array<any> {
+  getExpensesByCategory(): Array<CategorySummaryDTO> {
     return this.formatExpensesByCategory()
   }
 
-  getIncomeByCategory(): Array<any> {
+  getIncomeByCategory(): Array<CategorySummaryDTO> {
     return this.formatIncomeByCategory()
   }
 
