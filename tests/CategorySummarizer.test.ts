@@ -1,7 +1,7 @@
 import { CategorySummarizer } from "../src/modules/CategorySummarizer/CategorySummarizer"
 import { mock } from "./TransactionArrayMock"
 import { SummaryDTO } from "../src/lib/SummaryDTO"
-import { ExpenseCategory, IncomeCategory } from "../src"
+import { ExpenseCategory, IncomeCategory, Transaction } from "../src"
 
 describe('CategorySummarizer class test', () => {
   it('should return a SummaryDTO with the categorized transactions', () => {
@@ -23,5 +23,11 @@ describe('CategorySummarizer class test', () => {
     }
 
     expect(summary).toEqual(summaryComparable)
+  })
+
+  it('should throw an error if category is undefined', () => {
+    const transactions: Array<Transaction> = []
+    const summarizer = new CategorySummarizer()
+    expect(() => summarizer.summarizeCategories(transactions)).toThrow()
   })
 })

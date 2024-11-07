@@ -20,9 +20,9 @@ export abstract class Transaction {
    * @throws {error}
    */
   constructor (
-    date: Date,
+    date: Date,
     amount: number,
-  ) {
+  ) {
     this.validateAmount(amount)
 
     this.date = date
@@ -32,10 +32,10 @@ export abstract class Transaction {
   /**
    * Validates the amount.
    * @param { number } amount - The amount of money the transaction handles.
-   * @throws { Error } - The amount can not be less than 0.
+   * @throws { Error } - The amount can not be less than 0.
    */
   private validateAmount (amount: number) {
-    if (amount < 0 ) {
+    if (amount < 0 ) {
       throw new Error('The amount can not be less than 0.')
     }
   }

@@ -9,9 +9,13 @@ export class CategorySummarizer {
   /**
    * Returns an object containing the total amount of expenses and income for each category.
    *
+   * @throws {Error} If the argument is invalid.
    * @returns { SummaryDTO } An object containing the maps of income and expenses by category.
    */
   public summarizeCategories(transactions: Array<Transaction>): SummaryDTO {
+    if (transactions.length == 0) {
+      throw new Error('Illegal Argument: The array is empty')
+    }
     const expensesMap: Map<ExpenseCategory, number> = new Map<ExpenseCategory, number>()
     const incomeMap: Map<IncomeCategory, number> = new Map<IncomeCategory, number>()
 
@@ -26,13 +30,19 @@ export class CategorySummarizer {
       }
     }
 
-    const summary: SummaryDTO = {
-      expenseByCategory: expensesMap,
-      incomeByCategory: incomeMap
-    }
-
-    return summary
+    return this.createSummary(expensesMap, incomeMap)
   }
+
+  private createSummary(
+    expensesMap: Map<ExpenseCategory, number>,
+    incomeMap: Map<IncomeCategory, number>
+    ): SummaryDTO {
+      const summary: SummaryDTO = {
+        expenseByCategory: expensesMap,
+        incomeByCategory: incomeMap
+      }
+      return summary
+    }
 
   private addAmountToCategory(
     map: Map<IncomeCategory | ExpenseCategory, number>,
@@ -55,18 +65,8 @@ export class CategorySummarizer {
    */
   private findCategoryCurrentValue(map: Map<IncomeCategory | ExpenseCategory, number>, category: IncomeCategory | ExpenseCategory): number {
     let currentValue: number
-    try {
-      if (this.isUndefined(map.get(category))) {
-        throw new Error('Value of category not found.')
-      }
-      currentValue = map.get(category) as number
-    } catch (error) {
-      currentValue = 0
-    }
+    currentValue = map.get(category) as number
+    
     return currentValue
-  }
-
-  private isUndefined(value: any) {
-    return value === undefined
   }
 }
