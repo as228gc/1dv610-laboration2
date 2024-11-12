@@ -80,4 +80,40 @@ export class TransactionProcessor {
   sortByDate(): Array<Transaction> {
     return this.#transactions.sort((a, b) => a.getDate().getTime() - b.getDate().getTime())
   }
+
+  /**
+   * Returns a transaction with the given id
+   *
+   * @param id The transaction id to search for
+   * @throws {Error} ID can not be an empty string.
+   * @returns The transaction with the matching id
+   */
+  findById(id: string) {
+    this.validateIdLength(id)
+    return this.#transactions.find((transaction) => transaction.getId() === id)
+  }
+
+  /**
+   * Deletes the transaction with the matching id from the array.
+   *
+   * @param id The id belonging to the transaction to delete
+   * @throws {Error} ID can not be an empty string.
+   */
+  deleteById(id: string) {
+    this.validateIdLength(id)
+    const index: number = this.#transactions.findIndex(transaction => id === transaction.getId())
+    this.#transactions.splice(index, 1)
+  }
+
+  /**
+   * Checks if the entered id is empty.
+   *
+   * @param id The id to check
+   * @throws {Error} ID can not be an empty string.
+   */
+  private validateIdLength(id: string) {
+    if(id.length < 1) {
+      throw new Error("ID can not be an empty string.")
+    }
+  }
 }

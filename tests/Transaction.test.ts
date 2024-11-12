@@ -10,6 +10,7 @@ describe('Transaction class tests', () => {
     const transaction = new ExpenseTransaction(
       new Date(),
       100,
+      "1",
       ExpenseCategory.FOOD
     )
     expect(transaction).toBeDefined()
@@ -19,6 +20,7 @@ describe('Transaction class tests', () => {
     const transaction = new IncomeTransaction(
       new Date(),
       100,
+      "2",
       IncomeCategory.SALARY
     )
     expect(transaction).toBeDefined()
@@ -49,6 +51,18 @@ describe('Transaction class tests', () => {
       const transaction = new ExpenseTransaction(
         new Date(),
         -100,
+        "3",
+        ExpenseCategory.FOOD
+      )
+    }).toThrow()
+  })
+
+  it('throws an error if a transaction instance entered with a empty id string', () => {
+    expect(() => {
+      const transaction = new ExpenseTransaction(
+        new Date(),
+        100,
+        "",
         ExpenseCategory.FOOD
       )
     }).toThrow()
@@ -58,6 +72,7 @@ describe('Transaction class tests', () => {
   const validExpenseTransaction = new ExpenseTransaction(
     new Date(),
     100,
+    "4",
     ExpenseCategory.FOOD
   )
 

@@ -4,8 +4,8 @@ import { Transaction } from "./Transaction";
 export class ExpenseTransaction extends Transaction {
   private category: ExpenseCategory;
 
-  constructor(date: Date, amount: number, category: ExpenseCategory) {
-    super(date, amount);
+  constructor(date: Date, amount: number, id: string, category: ExpenseCategory) {
+    super(date, amount, id);
     this.category = category;
   }
 

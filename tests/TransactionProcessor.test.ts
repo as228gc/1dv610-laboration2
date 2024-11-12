@@ -15,6 +15,7 @@ describe('TransactionProcessor class test', () => {
       new ExpenseTransaction(
         new Date(),
         100,
+        (i).toString(),
         ExpenseCategory.FOOD
       )
     )
@@ -25,6 +26,7 @@ describe('TransactionProcessor class test', () => {
     transactions.push(new IncomeTransaction(
       new Date(),
       100,
+      (i + 5).toString(),
       IncomeCategory.SALARY
     ))
   }
@@ -34,6 +36,7 @@ describe('TransactionProcessor class test', () => {
     transactions.push(new ExpenseTransaction(
       new Date(),
       100,
+      (i + 10).toString(),
       ExpenseCategory.OTHER
     ))
   }
@@ -42,6 +45,7 @@ describe('TransactionProcessor class test', () => {
     transactions.push(new IncomeTransaction(
       new Date(),
       100,
+      (i + 15).toString(),
       IncomeCategory.GIFT
     ))
   }
@@ -61,6 +65,7 @@ describe('TransactionProcessor class test', () => {
     transactionProcessor.appendTransaction(new IncomeTransaction(
       new Date(),
       100,
+      "21",
       IncomeCategory.GIFT
     ))
     expect(transactions)
@@ -111,18 +116,21 @@ describe('TransactionProcessor class test', () => {
     const transaction1 = new ExpenseTransaction(
       new Date('2024-09-23'),
       100,
+      "22",
       ExpenseCategory.FOOD
     )
 
     const transaction2 = new ExpenseTransaction(
       new Date('2024-09-21'),
       100,
+      "23",
       ExpenseCategory.FOOD
     )
 
     const transaction3 = new ExpenseTransaction(
       new Date('2024-09-22'),
       100,
+      "24",
       ExpenseCategory.FOOD
     )
 
@@ -146,5 +154,26 @@ describe('TransactionProcessor class test', () => {
 
     // Compare transaction arrays
     expect(processor.sortByDate()).toEqual(transactionsMock)
+  })
+
+  it("should be able to find a transaction by id", () => {
+    const processor = new TransactionProcessor(transactions)
+    expect(processor.findById("0")).toEqual(transactions[0])
+  }) 
+
+  it("should be able to delete a transaction from the array", () => {
+    const processor = new TransactionProcessor(transactions)
+    processor.deleteById("0")
+    expect(processor.findById("0")).not.toEqual(transactions[0])
+  })
+
+  it("should throw an error if findById is called with an empty string", () => {
+    const processor = new TransactionProcessor(transactions)
+    expect(() => processor.findById("")).toThrow()
+  }) 
+
+  it("should throw an error if deleteById is called with an empty string", () => {
+    const processor = new TransactionProcessor(transactions)
+    expect(() => processor.deleteById("")).toThrow()
   })
 })
