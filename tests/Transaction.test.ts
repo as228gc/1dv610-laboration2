@@ -2,8 +2,8 @@ import { Transaction } from "../src/modules/Transaction/Transaction";
 import { TransactionType } from "../src/enums/TransactionType";
 import { ExpenseCategory } from "../src/enums/ExpenseCategory";
 import { IncomeCategory } from "../src/enums/IncomeCategory";
-import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
-import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction/IncomeTransaction";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction/ExpenseTransaction";
 
 describe('Transaction class tests', () => {
   it('should create a transaction instance with a valid expense category', () => {

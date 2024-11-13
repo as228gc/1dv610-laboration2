@@ -6,8 +6,8 @@
 
 import { ExpenseCategory } from "../../enums/ExpenseCategory";
 import { IncomeCategory } from "../../enums/IncomeCategory";
-import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
-import { IncomeTransaction } from "../Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../Transaction/ExpenseTransaction/ExpenseTransaction";
+import { IncomeTransaction } from "../Transaction/IncomeTransaction/IncomeTransaction";
 import { Transaction } from "../Transaction/Transaction";
 
 export class TransactionProcessor {

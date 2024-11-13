@@ -2,8 +2,8 @@ import { TransactionProcessor } from "../src/modules/TransactionProcessor/Transa
 import { Transaction } from "../src/modules/Transaction/Transaction";
 import { ExpenseCategory } from "../src/enums/ExpenseCategory";
 import { IncomeCategory } from "../src/enums/IncomeCategory";
-import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
-import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction/IncomeTransaction";
 
 describe('TransactionProcessor class test', () => {
   // Create a test array of transactions

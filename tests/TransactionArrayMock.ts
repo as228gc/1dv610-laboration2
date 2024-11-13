@@ -1,6 +1,6 @@
 import { ExpenseCategory, IncomeCategory, Transaction } from "../src";
-import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
-import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction/IncomeTransaction";
 
 const transactions: Array<Transaction> = []
 let testValue = 100

@@ -1,5 +1,5 @@
-import { ExpenseCategory } from "../../enums/ExpenseCategory";
-import { Transaction } from "./Transaction";
+import { ExpenseCategory } from "../../../enums/ExpenseCategory";
+import { Transaction } from "../Transaction";
 
 export class ExpenseTransaction extends Transaction {
   private category: ExpenseCategory;
