@@ -1,4 +1,4 @@
-# IncomeTransaction
+# ExpenseTransaction
 Inherits properties and methods from the Transaction class.
 Represents an expense transaction.
 
