@@ -1,6 +1,6 @@
 import { ExpenseCategory, IncomeCategory, Transaction } from "../src";
-import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction";
-import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../src/modules/Transaction/ExpenseTransaction/ExpenseTransaction";
+import { IncomeTransaction } from "../src/modules/Transaction/IncomeTransaction/IncomeTransaction";
 
 const transactions: Array<Transaction> = []
 let testValue = 100
@@ -13,6 +13,7 @@ for (let i = 0; i < 5; i++) {
     new ExpenseTransaction(
       new Date('2024-09-23'),
       testValue,
+      i.toString(),
       ExpenseCategory.FOOD
     )
   )
@@ -24,6 +25,7 @@ for (let i = 0; i < 5; i++) {
     new ExpenseTransaction(
       new Date('2024-09-24'),
       testValue,
+      (i + 5).toString(),
       ExpenseCategory.TRANSPORT
     )
   )
@@ -36,6 +38,7 @@ for (let i = 0; i < 5; i++) {
     new IncomeTransaction(
       new Date('2024-09-25'),
       testValue,
+      (i + 10).toString(),
       IncomeCategory.SALARY
     )
   )
@@ -47,6 +50,7 @@ for (let i = 0; i < 5; i++) {
     new IncomeTransaction(
       new Date('2024-09-26'),
       testValue,
+      (i + 15).toString(),
       IncomeCategory.GIFT
     )
   )

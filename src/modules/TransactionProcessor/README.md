@@ -75,3 +75,26 @@ processor.sortByDate() // Returns a sorted array of transactions
 ```
 
 
+### findById
+Arguments:
+* String - The id of the transaction to search for.
+
+Returns the transaction that has an matching id property to the id entered as argument.
+Throws an error if the entered argument is an empty string.
+
+Example: (assuming a TransactionProcessor instance named processor is created)
+```js
+const transaction = processor.findById("transactionId1")
+```
+
+### deleteById
+Arguments:
+* String - The id of the transaction to delete.
+
+Removes the transaction with an id property that matches the argument from the array.
+Throws an error if the entered argument is an empty string.
+
+Example: (assuming a TransactionProcessor instance named processor is created)
+```js
+processor.deleteById("transactionId1")
+```

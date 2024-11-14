@@ -1,5 +1,5 @@
-import { ExpenseTransaction } from "../Transaction/ExpenseTransaction";
-import { IncomeTransaction } from "../Transaction/IncomeTransaction";
+import { ExpenseTransaction } from "../Transaction/ExpenseTransaction/ExpenseTransaction";
+import { IncomeTransaction } from "../Transaction/IncomeTransaction/IncomeTransaction";
 import { Transaction } from "../Transaction/Transaction";
 import { TransactionProcessor } from "../TransactionProcessor/TransactionProcessor";
 

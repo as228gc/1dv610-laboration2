@@ -12,6 +12,7 @@ import { IncomeCategory } from "../../enums/IncomeCategory"
 export abstract class Transaction {
   private date: Date
   private amount: number
+  private id: string
 
   /**
    * 
@@ -22,11 +23,14 @@ export abstract class Transaction {
   constructor (
     date: Date,
     amount: number,
+    id: string
   ) {
     this.validateAmount(amount)
+    this.validateIdLength(id)
 
     this.date = date
     this.amount = amount
+    this.id = id
   }
 
   /**
@@ -37,6 +41,18 @@ export abstract class Transaction {
   private validateAmount (amount: number) {
     if (amount < 0 ) {
       throw new Error('The amount can not be less than 0.')
+    }
+  }
+
+  /**
+   * Validates that the entered string is not empty
+   *
+   * @param id The id to validate
+   * @throws {Error} - Id can not be an empty string.
+   */
+  private validateIdLength(id: string) {
+    if(id.length < 1) {
+      throw new Error("ID can not be an empty string.")
     }
   }
   
@@ -54,6 +70,16 @@ export abstract class Transaction {
    */
   public getAmount(): number {
     return this.amount
+  }
+
+
+  /**
+   * Returns a string representing the id of the transaction. 
+   *
+   * @returns An identifier for the transaction
+   */
+  public getId() {
+    return this.id
   }
 
   /**

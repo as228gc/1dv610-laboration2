@@ -8,8 +8,6 @@ Available transaction types in the enumeration:
 * INCOME
 * EXPENSE
 
-Example
-
 ## ExpenseCategory
 If the transaction is of the transaction type EXPENSE, the ExpenseCategory is a more specific subtype to be able to categorize the expense.
 

@@ -86,30 +86,65 @@ export class Report {
     return incomeByCategories
   }
 
+  /**
+   * Returns the total income.
+   *
+   * @returns A number representing the total income
+   */
   getTotalIncome(): number {
     return this.#totalIncome
   }
 
+  /**
+   * Returns the total expenses.
+   *
+   * @returns A numbe rrepresenting the total expenses.
+   */
   getTotalExpenses(): number {
     return this.#totalExpenses
   }
 
+  /**
+   * Returns the net balance.
+   *
+   * @returns A number representing the net balance.
+   */
   getNetBalance(): number {
     return this.#netBalance
   }
 
+  /**
+   * Returns the start date.
+   *
+   * @returns A date representing the start of the time span that is covered by the report.
+   */
   getStartDate(): Date {
     return this.#startDate
   }
 
+  /**
+   * Returns the end date.
+   *
+   * @returns A date representing the end of the time span that is covered buy the report.
+   */
   getEndDate(): Date {
     return this.#endDate
   }
 
+  /**
+   * Returns an array of SummaryDTO which is summaries of each category and values belonging to each category.
+   *
+   * @returns An array of SummaryDTO
+   */
   getExpensesByCategory(): Array<CategorySummaryDTO> {
     return this.formatExpensesByCategory()
   }
 
+  /**
+   * Returns an array of SummaryDTO which is summaries of each category and values belonging to each category.
+   *
+   * @returns An array of SummaryDTO
+   */
   getIncomeByCategory(): Array<CategorySummaryDTO> {
     return this.formatIncomeByCategory()
   }
