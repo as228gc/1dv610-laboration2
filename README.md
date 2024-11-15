@@ -2,8 +2,7 @@
 
 The tra-ma module is a tool made to help the user to get a financial overview of their transactions. The module is built to handle transactions of two types, income and expenses. The transactions can be categorized into different categories. The module can generate a report based on the created transactions. The report will summarize the transactions and categorize them into different categories. The report will also show the total income, total expenses, net balance, and the earliest and latest date of the transactions. 
 
-
-Example:
+Example usage:
 ```ts
 const transaction = new ExpenseTransaction(
     new Date('2024-09-23'),
@@ -55,8 +54,6 @@ import {
        } from "tra-ma"
 ```
 _______________________________________________________________________________________________________
-
----
 
 For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
 
