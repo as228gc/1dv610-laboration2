@@ -1,12 +1,49 @@
-# Transaction manager and report module
+# tra-ma module
 
-This module is used to get reports by time and generate a report depending on given constraints. The module could also be used to handle and categorize transactions.
+The tra-ma module is a tool made to help the user to get a financial overview of their transactions. The module is built to handle transactions of two types, income and expenses. The transactions can be categorized into different categories. The module can generate a report based on the created transactions. The report will summarize the transactions and categorize them into different categories. The report will also show the total income, total expenses, net balance, and the earliest and latest date of the transactions. 
+
+
+Example:
+```ts
+const transaction = new ExpenseTransaction(
+    new Date('2024-09-23'),
+    100,
+    "id_123",
+    ExpenseCategory.FOOD
+) // Creates a transaction with a date, amount, id, and category
+
+const transactions = [transaction] // Creates an array of transactions
+
+const processor = new TransactionProcessor(transactions) // Creates a processor with the transactions
+
+const generator = new ReportGenerator(processor) // Creates a generator with the processor
+
+const report = generator.generateReport() // Generates a report based on the transactions
+
+console.log(report.toString()) // => 
+  /*
+  Total income: 0
+
+  Total expenses: 100
+
+  Net balance: -100
+
+  Start date: Mon Sep 23 2024
+      
+  End date: Mon Sep 23 2024
+      
+  Expense by category:
+      food: 100
+  Income by category:
+  */
+```
+
 
 ## Installation guide:<br/>
 Write ```npm i tra-ma``` in console. Verify that the version is 1.0.5 in your package.json.
 
 Importing the module:
-```js
+```ts
 import {
          Transaction,
          TransactionProcessor,
@@ -19,32 +56,17 @@ import {
 ```
 _______________________________________________________________________________________________________
 
-Example:
-```js
-const transaction = new Transaction(
-    new Date('2024-09-23'),
-    100,
-    TransactionType.EXPENSE,
-    ExpenseCategory.FOOD
-)
-
-const transactions = [transaction]
-
-const processor = new TransactionProcessor(transactions)
-
-const generator = new ReportGenerator(processor)
-
-const report = generator.generateReport()
-
-console.log(report.toString()) // => Logs the report as a string
-```
-
+---
 
 For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
 
 Link to README for each class and enums:
 * [Enums](src/enums/README.md)
+* [CategorySummarizer](src/modules/CategorySummarizer/README.md)
 * [Transaction](src/modules/Transaction/README.md)
+* [IncomeTransaction](src/modules/Transaction/IncomeTransaction/README.md)
+* [ExpenseTransaction](src/modules/Transaction/ExpenseTransaction/README.md)
+* [TransactionCalculator](src/modules/TransactionCalculator/README.md)
 * [TransactionProcessor](src/modules/TransactionProcessor/README.md)
 * [Report](src/modules/Report/README.md)
 * [ReportGenerator](src/modules/ReportGenerator/README.md)
