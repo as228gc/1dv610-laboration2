@@ -39,7 +39,7 @@ console.log(report.toString()) // =>
 
 
 ## Installation guide:<br/>
-Write ```npm i tra-ma``` in console. Verify that the version is 1.0.5 in your package.json.
+Write ```npm i tra-ma``` in console. Verify that you have the latest version of the package.
 
 Importing the module:
 ```ts
