@@ -55,6 +55,13 @@ import {
 ```
 _______________________________________________________________________________________________________
 
+## Class diagram
+![Blank diagram - Page 2](https://github.com/user-attachments/assets/67ac8e91-422e-433d-a410-5bac9346b905)
+
+
+## Further reading
+
+
 For further instructions of how to use the separate classes and enumerations in the module, read the separate README.md files for each class.
 
 Link to README for each class and enums:
@@ -68,9 +75,7 @@ Link to README for each class and enums:
 * [Report](src/modules/Report/README.md)
 * [ReportGenerator](src/modules/ReportGenerator/README.md)
 
-You can find a class diagram in the projects [Wiki](https://github.com/as228gc/1dv610-laboration2/wiki).
-
-My reflections of the code quality: [Link to reflections](/reflektion.md)
+My reflections of the code quality: [Link to reflections](/reflection.md)
 
 Watch [Open Issues](https://github.com/as228gc/1dv610-laboration2/issues) to see future development of the module.
 
