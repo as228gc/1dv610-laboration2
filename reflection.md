@@ -36,5 +36,9 @@ Extracting TransactionCalculator and CategorySummarizer out of ReportGenerator u
 However, because I split the ReportGenerator into samller classes, there is high coupling between the classes. I have tried to minimize the coupling, but I am not sure that I have succeeded.
 I have introduced abstract classes and inheritance to the project. The new abstract Transaction class and the two subclasses allow for polymorphic behavior.
 
+<i>Screenshot of the new ReportGenerator constructor</i>
+![image](https://github.com/user-attachments/assets/01aa8689-c35a-4e0c-ba2e-5f69c1ae2a39)
+
+
 ### Chapter 11: Systems
 I have divided the system into clear and cohesive modules to make it easier to maintain. As I ahve developed my application for laboration 3, I have noticed that I needed the module to give me more information than it had before. The expansion of the module was easy which makes me think that the design has provided has provided an easy way to expand the module. I have also tried to use dependency injection as good as I can, this provides the ability to create separate classes from the system to use independently.
